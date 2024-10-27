@@ -1,0 +1,35 @@
+.menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  /* Futbolcunun hemen altında yer alsın */
+  left: 0;
+  background-color: white;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+.player-container:hover .menu {
+  display: block;
+  border-radius: 10px;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.in-menu-item {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  color: black;
+  cursor: pointer;
+}
+.in-menu {
+  padding: 0;
+  margin: 0;
+}
+.in-menu-item:hover {
+  background-color: black;
+  color: white;
+}

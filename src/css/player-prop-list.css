@@ -1,0 +1,18 @@
+.child-menu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.in-menu-item:hover .child-menu {
+  display: block;
+}
+.child-menu:hover {
+  display: block;
+}
