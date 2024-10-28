@@ -1,8 +1,8 @@
 {
-  "name": "FM",
+  "name": "FMTry",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/bekranker/FM",
+  "homepage": "https://github.com/bekranker/FMTry.git",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
