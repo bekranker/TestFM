@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/bekranker/TestFM/static/css/main.6901aaad.css",
-    "main.js": "/bekranker/TestFM/static/js/main.f5431d52.js",
-    "static/js/453.67280bcc.chunk.js": "/bekranker/TestFM/static/js/453.67280bcc.chunk.js",
-    "static/media/ball.png": "/bekranker/TestFM/static/media/ball.59c224c5ee49468f577e.png",
-    "index.html": "/bekranker/TestFM/index.html",
-    "main.6901aaad.css.map": "/bekranker/TestFM/static/css/main.6901aaad.css.map",
-    "main.f5431d52.js.map": "/bekranker/TestFM/static/js/main.f5431d52.js.map",
-    "453.67280bcc.chunk.js.map": "/bekranker/TestFM/static/js/453.67280bcc.chunk.js.map"
+    "main.css": "/TestFM/static/css/main.6901aaad.css",
+    "main.js": "/TestFM/static/js/main.7d4a69ef.js",
+    "static/js/453.67280bcc.chunk.js": "/TestFM/static/js/453.67280bcc.chunk.js",
+    "static/media/ball.png": "/TestFM/static/media/ball.59c224c5ee49468f577e.png",
+    "index.html": "/TestFM/index.html",
+    "main.6901aaad.css.map": "/TestFM/static/css/main.6901aaad.css.map",
+    "main.7d4a69ef.js.map": "/TestFM/static/js/main.7d4a69ef.js.map",
+    "453.67280bcc.chunk.js.map": "/TestFM/static/js/453.67280bcc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6901aaad.css",
-    "static/js/main.f5431d52.js"
+    "static/js/main.7d4a69ef.js"
   ]
 }
