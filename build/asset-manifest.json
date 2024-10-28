@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/bekranker/FM/static/css/main.6901aaad.css",
-    "main.js": "/bekranker/FM/static/js/main.6e3f0232.js",
-    "static/js/453.ad2c441c.chunk.js": "/bekranker/FM/static/js/453.ad2c441c.chunk.js",
-    "static/media/ball.png": "/bekranker/FM/static/media/ball.59c224c5ee49468f577e.png",
-    "index.html": "/bekranker/FM/index.html",
-    "main.6901aaad.css.map": "/bekranker/FM/static/css/main.6901aaad.css.map",
-    "main.6e3f0232.js.map": "/bekranker/FM/static/js/main.6e3f0232.js.map",
-    "453.ad2c441c.chunk.js.map": "/bekranker/FM/static/js/453.ad2c441c.chunk.js.map"
+    "main.css": "/bekranker/FMTry/static/css/main.6901aaad.css",
+    "main.js": "/bekranker/FMTry/static/js/main.ee2a1133.js",
+    "static/js/453.ba21f51d.chunk.js": "/bekranker/FMTry/static/js/453.ba21f51d.chunk.js",
+    "static/media/ball.png": "/bekranker/FMTry/static/media/ball.59c224c5ee49468f577e.png",
+    "index.html": "/bekranker/FMTry/index.html",
+    "main.6901aaad.css.map": "/bekranker/FMTry/static/css/main.6901aaad.css.map",
+    "main.ee2a1133.js.map": "/bekranker/FMTry/static/js/main.ee2a1133.js.map",
+    "453.ba21f51d.chunk.js.map": "/bekranker/FMTry/static/js/453.ba21f51d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6901aaad.css",
-    "static/js/main.6e3f0232.js"
+    "static/js/main.ee2a1133.js"
   ]
 }
