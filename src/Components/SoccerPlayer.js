@@ -46,7 +46,6 @@ export const SoccerPlayer = ({ onDragHandler }) => {
   const dragginFunc = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
     setProps(onDragHandler(position.x, position.y));
-    console.log(props.datas[0].name);
   };
 
   return (
