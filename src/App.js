@@ -4,51 +4,81 @@ import React from "react";
 import "./App.css";
 import Vector2 from "./Components/Vector2";
 import bg from "./halisaha.png";
+import DrawSquare from "./Components/mouseDebuggrt";
 
 const coordinates = [
   {
-    min: new Vector2(-520, -40),
-    max: new Vector2(-480, 40),
+    /* kaleci */
+    min: new Vector2(323, 586),
+    max: new Vector2(376, 397),
   },
   {
-    min: new Vector2(-370, -240),
-    max: new Vector2(-330, 240),
+    /* stoperler */
+    min: new Vector2(494, 703),
+    max: new Vector2(392, 278),
   },
   {
-    min: new Vector2(-200, -180),
-    max: new Vector2(-160, 180),
+    /* sahte defanslar */
+    min: new Vector2(514, 708),
+    max: new Vector2(815, 281),
   },
   {
-    min: new Vector2(-90, -260),
-    max: new Vector2(-50, 260),
+    /* Bekler üst */
+    min: new Vector2(344, 246),
+    max: new Vector2(611, 147),
   },
   {
-    min: new Vector2(-40, -240),
-    max: new Vector2(0, 240),
+    /* sahte bekler üst */
+    min: new Vector2(602, 258),
+    max: new Vector2(611, 147),
   },
   {
-    min: new Vector2(40, -200),
-    max: new Vector2(80, 200),
+    /* Sahte kanatlar üst */
+    min: new Vector2(768, 241),
+    max: new Vector2(1039, 141),
   },
   {
-    min: new Vector2(150, -150),
-    max: new Vector2(190, 150),
+    /* kanatlar üst */
+    min: new Vector2(1052, 236),
+    max: new Vector2(1266, 152),
   },
   {
-    min: new Vector2(240, -120),
-    max: new Vector2(280, 120),
+    /* bekler Alt */
+    min: new Vector2(332, 872),
+    max: new Vector2(566, 736),
   },
   {
-    min: new Vector2(350, -100),
-    max: new Vector2(390, 100),
+    /* sahte bekler alt */
+    min: new Vector2(562, 854),
+    max: new Vector2(735, 734),
   },
   {
-    min: new Vector2(480, -80),
-    max: new Vector2(520, 80),
+    /* sahte kanatlar alt */
+    min: new Vector2(749, 858),
+    max: new Vector2(1060, 748),
+  },
+  {
+    /* kanatlar alt */
+    min: new Vector2(1091, 842),
+    max: new Vector2(1295, 736),
+  },
+  {
+    /* orta saha */
+    min: new Vector2(828, 701),
+    max: new Vector2(974, 265),
+  },
+  {
+    /* forvet arkası */
+    min: new Vector2(1008, 691),
+    max: new Vector2(1279, 287),
+  },
+  {
+    /* forvet */
+    min: new Vector2(1313, 707),
+    max: new Vector2(1470, 291),
   },
 ];
-
-const kaleciTypes = {
+const kaleci = {
   coordinate: coordinates[0],
   datas: [
     { name: "Kaleci", shortName: "K", Props: ["Savunma"] },
@@ -59,7 +89,7 @@ const kaleciTypes = {
     },
   ],
 };
-const stoperTypes = {
+const stoperler = {
   coordinate: coordinates[1],
   datas: [
     {
@@ -85,7 +115,7 @@ const stoperTypes = {
     },
   ],
 };
-const defansOrtaSahaTypes = {
+const sahteDefanslar = {
   coordinate: coordinates[2],
   datas: [
     {
@@ -114,7 +144,7 @@ const defansOrtaSahaTypes = {
     },
   ],
 };
-const bekTypes = {
+const beklerUst = {
   coordinate: coordinates[3],
   datas: [
     {
@@ -137,7 +167,7 @@ const bekTypes = {
     { name: "Sigorta Bek", shortName: "SİB", Props: ["Savunma"] },
   ],
 };
-const sahteBekTypes = {
+const sahteBeklerUst = {
   coordinate: coordinates[4],
   datas: [
     {
@@ -157,7 +187,7 @@ const sahteBekTypes = {
     },
   ],
 };
-const sahteKanatTypes = {
+const sahteKanatlarUst = {
   coordinate: coordinates[5],
   datas: [
     {
@@ -171,8 +201,97 @@ const sahteKanatTypes = {
     { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
   ],
 };
-const ortaSahaTypes = {
+const kanatlarUst = {
   coordinate: coordinates[6],
+  datas: [
+    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
+    {
+      name: "Ofansif Oyun Kurucu",
+      shortName: "OOK",
+      Props: ["Destek", "Hücum"],
+    },
+    { name: "Kanat Forvet", shortName: "KF", Props: ["Destek", "Hücum"] },
+    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
+    { name: "Hedef Oyun Kurucu", shortName: "HKO", Props: ["Destek", "Hücum"] },
+    { name: "Raumdeuter", shortName: "RMD", Props: ["Hücum"] },
+    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
+  ],
+};
+const beklerAlt = {
+  coordinate: coordinates[7],
+  datas: [
+    {
+      name: "Standart Bek",
+      shortName: "SB",
+      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
+    },
+    {
+      name: "Kanat Bek",
+      shortName: "KB",
+      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
+    },
+    { name: "Çakılı Bek", shortName: "ÇB", Props: ["Savunma"] },
+    { name: "İki Yönlü Bek", shortName: "İYB", Props: ["Destek", "Hücum"] },
+    {
+      name: "Sahte Bek",
+      shortName: "SHB",
+      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
+    },
+    { name: "Sigorta Bek", shortName: "SİB", Props: ["Savunma"] },
+  ],
+};
+const sahteBeklerAlt = {
+  coordinate: coordinates[8],
+  datas: [
+    {
+      name: "Kanat Bek",
+      shortName: "KB",
+      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
+    },
+    {
+      name: "İki Yönlü Bek",
+      shortName: "İYB",
+      Props: ["Destek", "Hücum"],
+    },
+    {
+      name: "Sahte Bek",
+      shortName: "SHB",
+      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
+    },
+  ],
+};
+const sahteKanatlarAlt = {
+  coordinate: coordinates[9],
+  datas: [
+    {
+      name: "Çalışkan Kanat Oyuncusu",
+      shortName: "ÇKO",
+      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
+    },
+    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
+    { name: "Defansif Kanat", shortName: "DK", Props: ["Savunma", "Destek"] },
+    { name: "Kanat Oyun Kurucu", shortName: "KOK", Props: ["Destek", "Hücum"] },
+    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
+  ],
+};
+const kanatlarAlt = {
+  coordinate: coordinates[10],
+  datas: [
+    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
+    {
+      name: "Ofansif Oyun Kurucu",
+      shortName: "OOK",
+      Props: ["Destek", "Hücum"],
+    },
+    { name: "Kanat Forvet", shortName: "KF", Props: ["Destek", "Hücum"] },
+    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
+    { name: "Hedef Oyun Kurucu", shortName: "HKO", Props: ["Destek", "Hücum"] },
+    { name: "Raumdeuter", shortName: "RMD", Props: ["Hücum"] },
+    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
+  ],
+};
+const ortaSahalar = {
+  coordinate: coordinates[11],
   datas: [
     {
       name: "Merkez Orta Saha",
@@ -200,8 +319,8 @@ const ortaSahaTypes = {
     { name: "Dinamo", shortName: "DNM", Props: ["Destek"] },
   ],
 };
-const forvetArkasiTypes = {
-  coordinate: coordinates[7],
+const forvetArkasi = {
+  coordinate: coordinates[12],
   datas: [
     { name: "Ofansif Orta Saha", shortName: "OOS", Props: ["Destek", "Hücum"] },
     {
@@ -214,24 +333,8 @@ const forvetArkasiTypes = {
     { name: "Gizli Forvet", shortName: "GF", Props: ["Hücum"] },
   ],
 };
-const kanatTypes = {
-  coordinate: coordinates[8],
-  datas: [
-    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
-    {
-      name: "Ofansif Oyun Kurucu",
-      shortName: "OOK",
-      Props: ["Destek", "Hücum"],
-    },
-    { name: "Kanat Forvet", shortName: "KF", Props: ["Destek", "Hücum"] },
-    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
-    { name: "Hedef Oyun Kurucu", shortName: "HKO", Props: ["Destek", "Hücum"] },
-    { name: "Raumdeuter", shortName: "RMD", Props: ["Hücum"] },
-    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
-  ],
-};
-const forvetTypes = {
-  coordinate: coordinates[9],
+const forvet = {
+  coordinate: coordinates[13],
   datas: [
     { name: "Yardımcı Forvet", shortName: "YRD", Props: ["Destek", "Hücum"] },
     { name: "Yaratıcı Forvet", shortName: "YF", Props: ["Hücum"] },
@@ -247,22 +350,25 @@ const forvetTypes = {
     { name: "Sahte Forvet", shortName: "SF", Props: ["Destek"] },
   ],
 };
-
 const allTypes = [
-  kaleciTypes,
-  stoperTypes,
-  defansOrtaSahaTypes,
-  bekTypes,
-  sahteBekTypes,
-  sahteKanatTypes,
-  ortaSahaTypes,
-  forvetArkasiTypes,
-  kanatTypes,
-  forvetTypes,
+  kaleci,
+  stoperler,
+  sahteDefanslar,
+  beklerUst,
+  sahteBeklerUst,
+  sahteKanatlarUst,
+  kanatlarUst,
+  beklerAlt,
+  sahteBeklerAlt,
+  sahteKanatlarAlt,
+  kanatlarAlt,
+  ortaSahalar,
+  forvetArkasi,
+  forvet,
 ];
 
 function setCorrectData(xV, yV) {
-  let position = { x: xV, y: yV };
+  let position = new Vector2(xV, yV);
   for (let index = 0; index < allTypes.length; index++) {
     if (isWithinBounds(position, allTypes[index].coordinate)) {
       return allTypes[index];
@@ -271,10 +377,10 @@ function setCorrectData(xV, yV) {
 }
 function isWithinBounds(position, data) {
   return (
-    position.x >= data.min.x &&
-    position.x <= data.max.x &&
-    position.y >= data.min.y &&
-    position.y <= data.max.y
+    position.x > data.min.x &&
+    position.x < data.max.x &&
+    position.y > data.max.y &&
+    position.y < data.min.y
   );
 }
 
@@ -286,6 +392,7 @@ function App() {
           src={bg}
           style={{ width: 1280, height: 800, display: "grid" }}
         ></img>
+        <DrawSquare />
         <SoccerPlayer onDragHandler={setCorrectData} />
         <Ball />
       </header>

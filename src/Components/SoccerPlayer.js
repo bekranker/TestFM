@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import "../css/players.css";
 import "../css/propListMenu.css";
 import "../css/player-prop-list.css";
+import Vector2 from "../Components/Vector2";
+
 import Draggable from "react-draggable";
 import { PlayerPropsList } from "./playerPropsList";
 
@@ -10,7 +12,18 @@ export const SoccerPlayer = ({ onDragHandler }) => {
   const timeoutRef = useRef(null);
   const [selectedFeature, setSelectedFeature] = useState("");
   const [selectedChildFeature, setSelectedChildFeature] = useState("");
-  let props = "";
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [props, setProps] = useState({
+    coordinate: new Vector2(0, 0),
+    datas: [
+      { name: "Kaleci", shortName: "K", Props: ["Savunma"] },
+      {
+        name: "Libero Kaleci",
+        shortName: "LK",
+        Props: ["Savunma", "Destek", "Hücum"],
+      },
+    ],
+  });
   const handleSelectedChildFeature = (name) => {
     setSelectedChildFeature(`${name}`);
   };
@@ -30,15 +43,15 @@ export const SoccerPlayer = ({ onDragHandler }) => {
     }, 300); // 300ms gecikme ile kapanma
   };
 
-  const dragginFunc = (e, data) => {
-    props = onDragHandler(data.x, data.y);
+  const dragginFunc = (e) => {
+    setPosition({ x: e.clientX, y: e.clientY });
+    setProps(onDragHandler(position.x, position.y));
+    console.log(props.datas[0].name);
   };
-  const endDragFunc = (e, data) => {
-    console.log(props);
-  };
+
   return (
     <>
-      <Draggable onDrag={dragginFunc} onStop={endDragFunc}>
+      <Draggable onDrag={dragginFunc}>
         <div className="player-container">
           <div className="soccerplayer-background">
             <span className="info">{selectedFeature}</span>
