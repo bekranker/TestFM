@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
 .App {
   text-align: center;
 }
@@ -9,15 +11,51 @@
 
 .App-header {
   width: 100%;
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+html {
+  background-color: #242834;
+}
+.mobile-pop-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+}
+.mobile-pop-up > h1 {
+  padding-left: 20px;
+  position: relative;
+  color: hsl(0, 0%, 68%);
+  font-weight: bold !important;
+  font-size: 14px;
+  font-family: "Anonymous Pro", monospace !important;
+  letter-spacing: 4px !important;
+  overflow: hidden;
+  border-right: 2px solid hsl(0, 0%, 80%);
+  white-space: nowrap;
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms infinite ease;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 710px;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: hsl(0, 0%, 80%);
+  }
+  to {
+    border-right-color: transparent;
+  }
 }

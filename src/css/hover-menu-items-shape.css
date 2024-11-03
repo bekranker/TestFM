@@ -1,0 +1,25 @@
+.container {
+  gap: 12px;
+  padding: 8px;
+  padding-left: 13px !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+.container > button {
+  background-color: #242834;
+  border-radius: 10px;
+  border: solid;
+  border-width: 1px;
+  border-color: #717485;
+  width: 54px;
+  height: 54px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: width 0.2s, height 0.2s, box-shadow 0.2s;
+}
+.container > button:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: width 0.2s, height 0.2s, box-shadow 0.2s;
+  width: 56px;
+  height: 56px;
+}

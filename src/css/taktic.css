@@ -1,0 +1,13 @@
+.container-tactic {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 10px;
+  gap: 64px;
+}
+.taktic-text {
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: 600;
+  color: #ffffff;
+}

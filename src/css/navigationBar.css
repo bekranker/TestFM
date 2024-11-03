@@ -1,0 +1,57 @@
+.item {
+  border: 1px solid;
+  border-color: #717485;
+  justify-content: center;
+  align-items: center;
+  color: #9b9eaf;
+}
+.nav-button {
+  margin-top: 16px;
+  margin-left: 10px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  display: flex;
+  border: 1px solid;
+  font-size: 20px;
+}
+.item:hover {
+  color: #ffffff;
+  background-color: #242834;
+  transition: background-color 0.1s;
+}
+.bar-container {
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+  z-index: 1;
+}
+.hover-menu {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  width: 285px;
+  margin-left: 120px;
+  margin-top: 130px;
+  height: 130px;
+  z-index: 3;
+  list-style-type: none;
+  list-style: none;
+}
+
+.hover-menu-item-parent {
+  margin: 0px;
+  border: solid;
+  border-color: #717485;
+  border-radius: 17px;
+  border-width: 1px;
+  background-color: #333647;
+  width: 285px;
+  height: 130px;
+  padding-bottom: 8px;
+}
+
+.hover-menu-item {
+  width: 100%;
+  height: 100%;
+}

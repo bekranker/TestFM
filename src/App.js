@@ -1,370 +1,88 @@
 import { SoccerPlayer } from "./Components/SoccerPlayer";
 import { Ball } from "./Components/ball";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./App.css";
 import Vector2 from "./Components/Vector2";
-import bg from "./halisaha.png";
-import DrawSquare from "./Components/mouseDebuggrt";
+import bg from "./bg2.jpeg";
+import "./css/navigationBar.css";
+import html2canvas from "html2canvas";
+import { NavigationButtons } from "./Components/navigationButtons";
+import "./css/seperator.css";
+import "./css/taktic.css";
+import "./css/taktik-selection.css";
+import { useSpring, animated } from "react-spring";
+import { HoverMenuItems_Shapes } from "./Components/hoverMenuItems_Shapes";
+import { TaktikItem } from "./Components/taktikItem";
+import { ShapeSquare } from "./Components/ShapeSquare";
+import { ShapeCircle } from "./Components/ShapeCricle";
+import { DashedCircle } from "./Components/DashedCircle";
+import { DrawLine } from "./Components/DrawLine";
+import { DashedRectangle } from "./Components/DashedRectangle";
+import {
+  Coordinates,
+  Kaleci,
+  Stoperler,
+  SahteDefanslar,
+  BeklerUst,
+  SahteBeklerUst,
+  SahteKanatlarUst,
+  KanatlarUst,
+  BeklerAlt,
+  SahteBeklerAlt,
+  SahteKanatlarAlt,
+  KanatlarAlt,
+  OrtaSahalar,
+  ForvetArkasi,
+  Forvet,
+} from "./Components/PlayerRoles";
+import DrawMultipleShapesWithCanvas from "./Components/DrawShapesWithCanvas";
+import Saha_3_4_3 from "./Halisahalar/3-4-3_SAHA.png";
+import Saha_4_2_2_2_DOS_OOS_POKY from "./Halisahalar/4-2-2-2(DOS-OOS-POKY)_SAHA.png";
+import Saha_4_2_3_1_DOS_OOS_WIDE from "./Halisahalar/4-2-3-1(DOS-OOS-WIDE)_SAHA.png";
+import Saha_4_2_4_DOS_WIDE from "./Halisahalar/4-2-4(DOS-WIDE)_SAHA.png";
+import Saha_4_3_2_1_DOS_COS_POKY from "./Halisahalar/4-3-2-1(DOS-COS-POKY)_SAHA.png";
+import Saha_4_3_3_DOS_WIDE from "./Halisahalar/4-3-3(DOS-WIDE)_SAHA.png";
+import Saha_4_4_2 from "./Halisahalar/4-4-2_SAHA.png";
+import Saha_4_4_2_DIOMAND_POKY from "./Halisahalar/4-4-2(DIAMOND-POKY)_SAHA.png";
+import Saha_5_2_1_2_DOS_OOS from "./Halisahalar/5-2-1-2(DOS-OOS)_SAHA.png";
+import Saha_5_2_2_1_DOS_OOS from "./Halisahalar/5-2-2-1(DOS-OOS)_SAHA.png";
+import Saha_5_2_3_DOS_WIDE from "./Halisahalar/5-2-3(DOS-WIDE)_SAHA.png";
+import Saha_5_2_2_DOS_KB from "./Halisahalar/5-2-2(DOS-KB)_SAHA.png";
+function usePlatform() {
+  const [platform, setPlatform] = useState("");
 
-const coordinates = [
-  {
-    /* kaleci */
-    min: new Vector2(323, 586),
-    max: new Vector2(376, 397),
-  },
-  {
-    /* stoperler */
-    min: new Vector2(494, 703),
-    max: new Vector2(392, 278),
-  },
-  {
-    /* sahte defanslar */
-    min: new Vector2(514, 708),
-    max: new Vector2(815, 281),
-  },
-  {
-    /* Bekler üst */
-    min: new Vector2(344, 246),
-    max: new Vector2(611, 147),
-  },
-  {
-    /* sahte bekler üst */
-    min: new Vector2(602, 258),
-    max: new Vector2(611, 147),
-  },
-  {
-    /* Sahte kanatlar üst */
-    min: new Vector2(768, 241),
-    max: new Vector2(1039, 141),
-  },
-  {
-    /* kanatlar üst */
-    min: new Vector2(1052, 236),
-    max: new Vector2(1266, 152),
-  },
-  {
-    /* bekler Alt */
-    min: new Vector2(332, 872),
-    max: new Vector2(566, 736),
-  },
-  {
-    /* sahte bekler alt */
-    min: new Vector2(562, 854),
-    max: new Vector2(735, 734),
-  },
-  {
-    /* sahte kanatlar alt */
-    min: new Vector2(749, 858),
-    max: new Vector2(1060, 748),
-  },
-  {
-    /* kanatlar alt */
-    min: new Vector2(1091, 842),
-    max: new Vector2(1295, 736),
-  },
-  {
-    /* orta saha */
-    min: new Vector2(828, 701),
-    max: new Vector2(974, 265),
-  },
-  {
-    /* forvet arkası */
-    min: new Vector2(1008, 691),
-    max: new Vector2(1279, 287),
-  },
-  {
-    /* forvet */
-    min: new Vector2(1313, 707),
-    max: new Vector2(1470, 291),
-  },
-];
-const kaleci = {
-  coordinate: coordinates[0],
-  datas: [
-    { name: "Kaleci", shortName: "K", Props: ["Savunma"] },
-    {
-      name: "Libero Kaleci",
-      shortName: "LK",
-      Props: ["Savunma", "Destek", "Hücum"],
-    },
-  ],
-};
-const stoperler = {
-  coordinate: coordinates[1],
-  datas: [
-    {
-      name: "Standart Stoper",
-      shortName: "SS",
-      Props: ["Savunma", "Kesici", "Sigorta"],
-    },
-    { name: "Libero", shortName: "L", Props: ["Savunma", "Destek"] },
-    {
-      name: "Pasör Stoper",
-      shortName: "PS",
-      Props: ["Savunma", "Kesici", "Sigorta"],
-    },
-    {
-      name: "Çakılı Stoper",
-      shortName: "ÇS",
-      Props: ["Savunma", "Kesici", "Sigorta"],
-    },
-    {
-      name: "Kenar Stoper",
-      shortName: "KS",
-      Props: ["Savunma", "Kesici", "Sigorta"],
-    },
-  ],
-};
-const sahteDefanslar = {
-  coordinate: coordinates[2],
-  datas: [
-    {
-      name: "Defansif Orta Saha",
-      shortName: "DOS",
-      Props: ["Savunma", "Destek"],
-    },
-    {
-      name: "Derin Oyun Kurucu",
-      shortName: "DOK",
-      Props: ["Savunma", "Destek"],
-    },
-    {
-      name: "Savaşçı Orta Saha",
-      shortName: "SO",
-      Props: ["Savunma", "Destek"],
-    },
-    { name: "Ön Libero", shortName: "ÖL", Props: ["Savunma"] },
-    { name: "Gizli Libero", shortName: "GL", Props: ["Savunma"] },
-    { name: "Regista", shortName: "REG", Props: ["Destek"] },
-    { name: "Gezgin Oyun Kurucu", shortName: "GOK", Props: ["Destek"] },
-    {
-      name: "Serbest Defansif Orta Saha",
-      shortName: "VOL",
-      Props: ["Destek", "Hücum"],
-    },
-  ],
-};
-const beklerUst = {
-  coordinate: coordinates[3],
-  datas: [
-    {
-      name: "Standart Bek",
-      shortName: "SB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    {
-      name: "Kanat Bek",
-      shortName: "KB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    { name: "Çakılı Bek", shortName: "ÇB", Props: ["Savunma"] },
-    { name: "İki Yönlü Bek", shortName: "İYB", Props: ["Destek", "Hücum"] },
-    {
-      name: "Sahte Bek",
-      shortName: "SHB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    { name: "Sigorta Bek", shortName: "SİB", Props: ["Savunma"] },
-  ],
-};
-const sahteBeklerUst = {
-  coordinate: coordinates[4],
-  datas: [
-    {
-      name: "Kanat Bek",
-      shortName: "KB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    {
-      name: "İki Yönlü Bek",
-      shortName: "İYB",
-      Props: ["Destek", "Hücum"],
-    },
-    {
-      name: "Sahte Bek",
-      shortName: "SHB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-  ],
-};
-const sahteKanatlarUst = {
-  coordinate: coordinates[5],
-  datas: [
-    {
-      name: "Çalışkan Kanat Oyuncusu",
-      shortName: "ÇKO",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
-    { name: "Defansif Kanat", shortName: "DK", Props: ["Savunma", "Destek"] },
-    { name: "Kanat Oyun Kurucu", shortName: "KOK", Props: ["Destek", "Hücum"] },
-    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
-  ],
-};
-const kanatlarUst = {
-  coordinate: coordinates[6],
-  datas: [
-    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
-    {
-      name: "Ofansif Oyun Kurucu",
-      shortName: "OOK",
-      Props: ["Destek", "Hücum"],
-    },
-    { name: "Kanat Forvet", shortName: "KF", Props: ["Destek", "Hücum"] },
-    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
-    { name: "Hedef Oyun Kurucu", shortName: "HKO", Props: ["Destek", "Hücum"] },
-    { name: "Raumdeuter", shortName: "RMD", Props: ["Hücum"] },
-    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
-  ],
-};
-const beklerAlt = {
-  coordinate: coordinates[7],
-  datas: [
-    {
-      name: "Standart Bek",
-      shortName: "SB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    {
-      name: "Kanat Bek",
-      shortName: "KB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    { name: "Çakılı Bek", shortName: "ÇB", Props: ["Savunma"] },
-    { name: "İki Yönlü Bek", shortName: "İYB", Props: ["Destek", "Hücum"] },
-    {
-      name: "Sahte Bek",
-      shortName: "SHB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    { name: "Sigorta Bek", shortName: "SİB", Props: ["Savunma"] },
-  ],
-};
-const sahteBeklerAlt = {
-  coordinate: coordinates[8],
-  datas: [
-    {
-      name: "Kanat Bek",
-      shortName: "KB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    {
-      name: "İki Yönlü Bek",
-      shortName: "İYB",
-      Props: ["Destek", "Hücum"],
-    },
-    {
-      name: "Sahte Bek",
-      shortName: "SHB",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-  ],
-};
-const sahteKanatlarAlt = {
-  coordinate: coordinates[9],
-  datas: [
-    {
-      name: "Çalışkan Kanat Oyuncusu",
-      shortName: "ÇKO",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
-    { name: "Defansif Kanat", shortName: "DK", Props: ["Savunma", "Destek"] },
-    { name: "Kanat Oyun Kurucu", shortName: "KOK", Props: ["Destek", "Hücum"] },
-    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
-  ],
-};
-const kanatlarAlt = {
-  coordinate: coordinates[10],
-  datas: [
-    { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
-    {
-      name: "Ofansif Oyun Kurucu",
-      shortName: "OOK",
-      Props: ["Destek", "Hücum"],
-    },
-    { name: "Kanat Forvet", shortName: "KF", Props: ["Destek", "Hücum"] },
-    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
-    { name: "Hedef Oyun Kurucu", shortName: "HKO", Props: ["Destek", "Hücum"] },
-    { name: "Raumdeuter", shortName: "RMD", Props: ["Hücum"] },
-    { name: "Ters Ayaklı Kanat", shortName: "TAK", Props: ["Destek", "Hücum"] },
-  ],
-};
-const ortaSahalar = {
-  coordinate: coordinates[11],
-  datas: [
-    {
-      name: "Merkez Orta Saha",
-      shortName: "MO",
-      Props: ["Savunma", "Destek", "Hücum", "Otomatik"],
-    },
-    {
-      name: "Derin Oyun Kurucu",
-      shortName: "DOK",
-      Props: ["Savunma", "Destek"],
-    },
-    { name: "İki Yönlü Orta Saha", shortName: "İYO", Props: ["Destek"] },
-    {
-      name: "Ofansif Oyun Kurucu",
-      shortName: "OOK",
-      Props: ["Destek", "Hücum"],
-    },
-    {
-      name: "Savaşçı Orta Saha",
-      shortName: "SO",
-      Props: ["Savunma", "Destek"],
-    },
-    { name: "Gezgin Oyun Kurucu", shortName: "GOK", Props: ["Destek"] },
-    { name: "Mezzala", shortName: "MEZ", Props: ["Destek", "Hücum"] },
-    { name: "Dinamo", shortName: "DNM", Props: ["Destek"] },
-  ],
-};
-const forvetArkasi = {
-  coordinate: coordinates[12],
-  datas: [
-    { name: "Ofansif Orta Saha", shortName: "OOS", Props: ["Destek", "Hücum"] },
-    {
-      name: "Ofansif Oyun Kurucu",
-      shortName: "OOK",
-      Props: ["Destek", "Hücum"],
-    },
-    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
-    { name: "Enganche", shortName: "EG", Props: ["Destek"] },
-    { name: "Gizli Forvet", shortName: "GF", Props: ["Hücum"] },
-  ],
-};
-const forvet = {
-  coordinate: coordinates[13],
-  datas: [
-    { name: "Yardımcı Forvet", shortName: "YRD", Props: ["Destek", "Hücum"] },
-    { name: "Yaratıcı Forvet", shortName: "YF", Props: ["Hücum"] },
-    { name: "Pivot Santrafor", shortName: "PS", Props: ["Destek", "Hücum"] },
-    { name: "Fırsatçı Golcü", shortName: "FG", Props: ["Hücum"] },
-    { name: "Komple Forvet", shortName: "KOF", Props: ["Destek", "Hücum"] },
-    {
-      name: "Çalışkan Forvet",
-      shortName: "ÇF",
-      Props: ["Savunma", "Destek", "Hücum"],
-    },
-    { name: "On Numara", shortName: "ON", Props: ["Hücum"] },
-    { name: "Sahte Forvet", shortName: "SF", Props: ["Destek"] },
-  ],
-};
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/windows phone/i.test(userAgent)) {
+      setPlatform("Windows Phone");
+    } else if (/android/i.test(userAgent)) {
+      setPlatform("Android");
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      setPlatform("iOS");
+    } else {
+      setPlatform("Desktop");
+    }
+  }, []);
+
+  return platform;
+}
+
 const allTypes = [
-  kaleci,
-  stoperler,
-  sahteDefanslar,
-  beklerUst,
-  sahteBeklerUst,
-  sahteKanatlarUst,
-  kanatlarUst,
-  beklerAlt,
-  sahteBeklerAlt,
-  sahteKanatlarAlt,
-  kanatlarAlt,
-  ortaSahalar,
-  forvetArkasi,
-  forvet,
+  Kaleci,
+  Stoperler,
+  SahteDefanslar,
+  BeklerUst,
+  SahteBeklerUst,
+  SahteKanatlarUst,
+  KanatlarUst,
+  BeklerAlt,
+  SahteBeklerAlt,
+  SahteKanatlarAlt,
+  KanatlarAlt,
+  OrtaSahalar,
+  ForvetArkasi,
+  Forvet,
 ];
 
 function setCorrectData(xV, yV) {
@@ -377,26 +95,413 @@ function setCorrectData(xV, yV) {
 }
 function isWithinBounds(position, data) {
   return (
-    position.x > data.min.x &&
-    position.x < data.max.x &&
-    position.y > data.max.y &&
-    position.y < data.min.y
+    position.x >= data.min.x &&
+    position.x <= data.max.x &&
+    position.y >= data.max.y &&
+    position.y <= data.min.y
   );
 }
 
+const taktiks = [
+  {
+    taktikName: "3-4-3",
+    coverImage: Saha_3_4_3,
+    poses: [
+      new Vector2(-468, -150),
+      new Vector2(-468, -35),
+      new Vector2(-468, 120),
+      new Vector2(-80, -330),
+      new Vector2(-80, 60),
+      new Vector2(-80, 118),
+      new Vector2(-80, 307),
+      new Vector2(488, -104),
+      new Vector2(488, -12),
+      new Vector2(488, 82),
+    ],
+  },
+  {
+    taktikName: "4-2-2-2 DOS OOS POKY",
+    coverImage: Saha_4_2_2_2_DOS_OOS_POKY,
+    poses: [
+      new Vector2(-292, -330),
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-285, -131),
+      new Vector2(-285, 66),
+      new Vector2(-306, 305),
+      new Vector2(287, -150),
+      new Vector2(287, -125),
+      new Vector2(540, -50),
+      new Vector2(540, -124),
+    ],
+  },
+  {
+    taktikName: "4-2-3-1 DOS OOS WIDE",
+    coverImage: Saha_4_2_3_1_DOS_OOS_WIDE,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-306, 305),
+      new Vector2(-285, -131),
+      new Vector2(-284, 66),
+      new Vector2(278, -311),
+      new Vector2(308, -20),
+      new Vector2(289, -293),
+      new Vector2(540, -12),
+    ],
+  },
+  {
+    taktikName: "4-2-4 DOS WIDE",
+    coverImage: Saha_4_2_4_DOS_WIDE,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-306, 305),
+      new Vector2(-285, -131),
+      new Vector2(-284, 66),
+      new Vector2(278, -311),
+      new Vector2(289, 293),
+      new Vector2(587, -51),
+      new Vector2(540, 36),
+    ],
+  },
+  {
+    taktikName: "4-3-2-1 DOS COS POKY",
+    coverImage: Saha_4_3_2_1_DOS_COS_POKY,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-306, 305),
+      new Vector2(-291, -24),
+      new Vector2(-81, 59),
+      new Vector2(-81, -118),
+      new Vector2(287, -150),
+      new Vector2(309, -124),
+      new Vector2(540, -12),
+    ],
+  },
+  {
+    taktikName: "4-3-3 DOS WIDE",
+    coverImage: Saha_4_3_3_DOS_WIDE,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-306, 305),
+      new Vector2(-291, -24),
+      new Vector2(-81, 59),
+      new Vector2(-81, -118),
+      new Vector2(278, -311),
+      new Vector2(289, -293),
+      new Vector2(540, -12),
+    ],
+  },
+  {
+    taktikName: "4-4-2",
+    coverImage: Saha_4_4_2,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-306, 305),
+      new Vector2(-82, -328),
+      new Vector2(-81, 59),
+      new Vector2(-81, -118),
+      new Vector2(-71, -307),
+      new Vector2(540, -51),
+      new Vector2(540, 36),
+    ],
+  },
+  {
+    taktikName: "4-4-2 DIOMAND POKY",
+    coverImage: Saha_4_4_2_DIOMAND_POKY,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-306, 305),
+      new Vector2(-291, -24),
+      new Vector2(-81, 59),
+      new Vector2(-81, -118),
+      new Vector2(308, -20),
+      new Vector2(540, -51),
+      new Vector2(540, 36),
+    ],
+  },
+  {
+    taktikName: "5-2-1-2 DOS OOS",
+    coverImage: Saha_5_2_1_2_DOS_OOS,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-464, -37),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-285, 131),
+      new Vector2(-285, 66),
+      new Vector2(-306, 305),
+      new Vector2(308, -20),
+      new Vector2(540, -51),
+      new Vector2(540, 36),
+    ],
+  },
+  {
+    taktikName: "5-2-2-1 DOS OOS",
+    coverImage: Saha_5_2_2_1_DOS_OOS,
+    poses: [
+      new Vector2(-463, -148),
+      new Vector2(-464, -37),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-285, 131),
+      new Vector2(-285, 66),
+      new Vector2(-306, 305),
+      new Vector2(308, -20),
+      new Vector2(540, -51),
+      new Vector2(540, 36),
+    ],
+  },
+  { taktikName: "5-2-3-1 DOS WIDE", coverImage: Saha_5_2_3_DOS_WIDE },
+  { taktikName: "5-2-2 DOS KB", coverImage: Saha_5_2_2_DOS_KB },
+];
+
 function App() {
+  const [rotateValue, setRotateValue] = useState(0);
+  const fieldRef = useRef();
+  const [taktikLabelOpen, setTaktikLabelOpen] = useState(false);
+  const [colors, setColors] = useState({
+    backgroundColor: "#333647",
+    borderColor: "#ffffff",
+    color: "#7800e0",
+  });
+  const [hover, setHover] = useState(false);
+  const [selectedTaktik, setSelectedTaktik] = useState(taktiks[0]);
+  const captureField = () => {
+    if (fieldRef.current) {
+      html2canvas(fieldRef.current, { scale: 2 }).then((canvas) => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "soccer-field.png";
+        link.click();
+      });
+    }
+  };
+  const fadeOutAnim = useSpring({
+    opacity: hover ? 0.2 : 1,
+  });
+  const onClickEvent = () => {
+    setFlip(!flip);
+    if (flip) {
+      setRotateValue(0);
+    } else {
+      setRotateValue(180);
+    }
+    setTaktikLabelOpen(!taktikLabelOpen);
+    if (!taktikLabelOpen) {
+      setColors({
+        backgroundColor: "#ffffff",
+        borderColor: "#ffffff",
+        color: "#7800e0",
+      });
+    } else {
+      setColors({
+        backgroundColor: "#7800e0",
+        borderColor: "#7133B2",
+        color: "#ffffff",
+      });
+    }
+  };
+  const anim = useSpring({
+    opacity: taktikLabelOpen ? 1 : 0,
+    transform: taktikLabelOpen ? "translateY(0)" : "translateY(-10px)",
+    display: taktikLabelOpen ? "flex" : "none",
+  });
+
+  const [flip, setFlip] = useState(false);
+  const [drawComponent, setDrawComponent] = useState(<DashedRectangle />);
+  const [Drawing, SetDrawing] = useState("");
+  const [canDraw, SetCanDraw] = useState(false);
+  const firstPositions = [
+    new Vector2(-480, -412),
+    new Vector2(-440, -412),
+    new Vector2(-400, -412),
+    new Vector2(-360, -412),
+    new Vector2(-320, -412),
+    new Vector2(-280, -412),
+    new Vector2(-240, -412),
+    new Vector2(-200, -412),
+    new Vector2(-160, -412),
+    new Vector2(-120, -412),
+    new Vector2(-80, -412),
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src={bg}
-          style={{ width: 1280, height: 800, display: "grid" }}
-        ></img>
-        <DrawSquare />
-        <SoccerPlayer onDragHandler={setCorrectData} />
-        <Ball />
-      </header>
-    </div>
+    <>
+      {usePlatform() === "Desktop" && (
+        <div className="App">
+          <div className="navigation-bar bar-container">
+            <NavigationButtons
+              vHover={setHover}
+              canDisplayHoverMenu={true}
+              name="Arka Plan"
+              customStyle={{ width: 163, height: 48 }}
+            />
+            <NavigationButtons
+              vHover={setHover}
+              canDisplayHoverMenu={true}
+              name="Kalem"
+              customStyle={{ width: 163, height: 48 }}
+            />
+            <NavigationButtons
+              vHover={setHover}
+              canDisplayHoverMenu={true}
+              menuItems={
+                <HoverMenuItems_Shapes
+                  props={[
+                    { name: "Arrow", whatItDoes: () => {} },
+                    {
+                      name: "Rectangle",
+                      whatItDoes: () => {
+                        setDrawComponent(<ShapeSquare />);
+                      },
+                    },
+                    {
+                      name: "Line",
+                      whatItDoes: () => {
+                        setDrawComponent(<DrawLine />);
+                      },
+                    },
+                    {
+                      name: "Circle",
+                      whatItDoes: () => {
+                        setDrawComponent(<ShapeCircle />);
+                      },
+                    },
+                    {
+                      name: "DashedArrow",
+                      whatItDoes: () => {},
+                    },
+                    {
+                      name: "DashedRectangle",
+                      whatItDoes: () => {
+                        setDrawComponent(<DashedRectangle />);
+                      },
+                    },
+                    {
+                      name: "DashedLine",
+                      whatItDoes: () => {
+                        setDrawComponent(<DrawLine />);
+                      },
+                    },
+                    {
+                      name: "DashedCircle",
+                      whatItDoes: () => {
+                        setDrawComponent(<DashedCircle />);
+                      },
+                    },
+                  ]}
+                  canDraw={canDraw}
+                  setCanDraw={SetCanDraw}
+                  Drawing={Drawing}
+                  SetDrawing={SetDrawing}
+                />
+              }
+              name="Şekiller"
+              customStyle={{ width: 170, height: 48 }}
+            />
+            <NavigationButtons
+              canDisplayHoverMenu={false}
+              name="Görseli İndir"
+              customStyle={{ width: 170, height: 48 }}
+              onClickEvent={captureField}
+            />
+          </div>
+          <hr className="seperator"></hr>
+          <animated.div style={fadeOutAnim}>
+            <div className="container-tactic">
+              <div className="taktic-text">Taktik</div>
+              <header
+                className="tactic-selection"
+                style={{ backgroundColor: colors }}
+                onMouseDown={() => onClickEvent()}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                  className="arrow-down"
+                  fill="#ffffff"
+                  style={{
+                    transform: `rotate(${rotateValue}deg)`,
+                    transition: "transform 0.3s ease",
+                  }}
+                >
+                  <path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z " />
+                </svg>
+
+                <div className="tactic-text-info">
+                  <a style={{ color: "#9B9EAF" }}>Formation:</a>
+                  {selectedTaktik.taktikName}
+                </div>
+              </header>
+              {
+                <animated.div
+                  className="container-tactik-selection"
+                  style={anim}
+                >
+                  {taktiks.map((item, _) => (
+                    <TaktikItem
+                      selectTaktikEvent={() => {
+                        setSelectedTaktik(item);
+                      }}
+                      bg={item.coverImage}
+                      name={item.taktikName}
+                    />
+                  ))}
+                </animated.div>
+              }
+            </div>
+
+            <header className="App-header" id="field" ref={fieldRef}>
+              <div
+                style={{
+                  width: 1200,
+                  height: 800,
+                  display: "grid",
+                  borderRadius: 5,
+                  backgroundImage: `url(${require("./bg2.jpeg")})`,
+                }}
+              >
+                {canDraw && (
+                  <DrawMultipleShapesWithCanvas
+                    className="shape"
+                    drawThis={drawComponent}
+                  />
+                )}
+              </div>
+
+              {firstPositions.map((item, _) => {
+                return (
+                  <>
+                    <SoccerPlayer
+                      onDragHandler={setCorrectData}
+                      position={{ x: item.x, y: item.y }}
+                    />
+                  </>
+                );
+              })}
+
+              <Ball />
+            </header>
+          </animated.div>
+        </div>
+      )}
+      {usePlatform() !== "Desktop" && (
+        <div className="mobile-pop-up">
+          <h1>We are working on mobile support</h1>
+        </div>
+      )}
+    </>
   );
 }
 

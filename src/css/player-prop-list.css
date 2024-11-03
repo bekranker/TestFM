@@ -1,18 +1,36 @@
 .child-menu {
-  display: none;
-  position: absolute;
-  left: 100%;
+  width: 70px;
+  border: 1px solid #717485;
+  background-color: #242834;
+  color: #9b9eaf;
+  border-radius: 6px;
+  margin-left: 0px;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  position: "absolute";
   top: 0;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  z-index: 2;
-  border-radius: 10px;
+  left: 145%;
+  overflow: hidden;
 }
-
-.in-menu-item:hover .child-menu {
-  display: block;
+.child-menu-parent {
+  width: 100%;
 }
-.child-menu:hover {
-  display: block;
+.child-menu-item {
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #cccccc00;
+  background-color: #242834;
+  color: #9b9eaf;
+  cursor: pointer;
+  border-color: #717485;
+  padding-left: 0px;
+  transition: color 0.3s, background-color 0.3s;
+}
+.child-menu-item:hover {
+  color: #ffffff;
+  background-color: #7800e0;
+  transition: color 0.3s, background-color 0.3s;
 }

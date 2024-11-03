@@ -1,20 +1,25 @@
 .player-container {
   position: absolute;
-  display: inline-block;
+  width: 50px;
+  height: 50px;
+  z-index: 1;
 }
 .info {
-  font-size: 20px;
+  font-size: 90%;
+  font-weight: 700;
+}
+.info-child {
+  font-size: 80%;
+  font-weight: 700;
 }
 .soccerplayer-background {
   display: flex;
   flex-direction: column;
-  width: 50px;
-  height: 50px;
+  width: 36px;
+  height: 36px;
   border-radius: 100%;
   border-width: 20px;
   border: solid;
-  color: white;
-  background-color: black;
   text-align: center;
   align-items: center;
   justify-content: center;

@@ -1,35 +1,41 @@
 .menu {
-  display: none;
   position: absolute;
   top: 50px;
-  /* Futbolcunun hemen altında yer alsın */
   left: 0;
-  background-color: white;
-  border: 1px solid black;
+  border: 1px solid #717485;
   z-index: 1;
-}
-
-.player-container:hover .menu {
-  display: block;
-  border-radius: 10px;
+  background-color: #242834;
+  border-radius: 6px;
 }
 
 .menu ul {
   list-style-type: none;
-  padding: 0;
 }
 
 .in-menu-item {
-  padding: 20px;
+  position: relative;
   border-bottom: 1px solid #ccc;
-  color: black;
+  color: #9b9eaf;
   cursor: pointer;
+  border-radius: 1px;
+  border-color: #717485;
+  padding-left: 0px;
 }
 .in-menu {
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
+  background-color: #242834;
+  border-color: #717485;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 400;
+}
+.in-menu li {
+  padding: 8px;
+  border-bottom: 1px solid #cccccc00; /* Alt çizgi rengi ve kalınlığı */
 }
 .in-menu-item:hover {
-  background-color: black;
-  color: white;
+  background-color: #7800e0;
+  color: #ffffff;
+  border-radius: 2px;
 }
