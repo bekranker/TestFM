@@ -1,7 +1,7 @@
 {
   "name": "react",
   "version": "0.1.0",
-  "homepage": "https://bekranker.github.io/TestFM/",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
