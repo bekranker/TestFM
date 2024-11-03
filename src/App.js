@@ -3,7 +3,6 @@ import { Ball } from "./Components/ball";
 import React, { useRef, useState, useEffect } from "react";
 import "./App.css";
 import Vector2 from "./Components/Vector2";
-import bg from "./bg2.jpeg";
 import "./css/navigationBar.css";
 import html2canvas from "html2canvas";
 import { NavigationButtons } from "./Components/navigationButtons";
@@ -19,7 +18,6 @@ import { DashedCircle } from "./Components/DashedCircle";
 import { DrawLine } from "./Components/DrawLine";
 import { DashedRectangle } from "./Components/DashedRectangle";
 import {
-  Coordinates,
   Kaleci,
   Stoperler,
   SahteDefanslar,
@@ -321,7 +319,7 @@ function App() {
 
   const [flip, setFlip] = useState(false);
   const [drawComponent, setDrawComponent] = useState(<DashedRectangle />);
-  const [Drawing, SetDrawing] = useState("");
+  const [drawing, SetDrawing] = useState("");
   const [canDraw, SetCanDraw] = useState(false);
   const firstPositions = [
     new Vector2(-480, -412),
@@ -403,7 +401,7 @@ function App() {
                   ]}
                   canDraw={canDraw}
                   setCanDraw={SetCanDraw}
-                  Drawing={Drawing}
+                  drawing={drawing}
                   SetDrawing={SetDrawing}
                 />
               }

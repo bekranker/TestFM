@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "../css/players.css";
 import "../css/propListMenu.css";
 import "../css/player-prop-list.css";

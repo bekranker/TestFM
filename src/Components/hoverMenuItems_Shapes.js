@@ -14,7 +14,7 @@ export const HoverMenuItems_Shapes = ({
   props,
   setCanDraw,
   canDraw,
-  Drawing,
+  drawing,
   SetDrawing,
 }) => {
   const shapes = [
@@ -22,7 +22,7 @@ export const HoverMenuItems_Shapes = ({
       name: "Arrow",
       bgImg: Arrow,
       whatItDoes: () => {
-        if (Drawing === "Arrow") {
+        if (drawing === "Arrow") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("Arrow");
@@ -35,7 +35,7 @@ export const HoverMenuItems_Shapes = ({
       name: "Rectangle",
       bgImg: Rectangle,
       whatItDoes: () => {
-        if (Drawing === "Rectangle") {
+        if (drawing === "Rectangle") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("Rectangle");
@@ -48,7 +48,7 @@ export const HoverMenuItems_Shapes = ({
       name: "Line",
       bgImg: Line,
       whatItDoes: () => {
-        if (Drawing === "Line") {
+        if (drawing === "Line") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("Line");
@@ -61,7 +61,7 @@ export const HoverMenuItems_Shapes = ({
       name: "Circle",
       bgImg: Circle,
       whatItDoes: () => {
-        if (Drawing === "Circle") {
+        if (drawing === "Circle") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("Circle");
@@ -74,7 +74,7 @@ export const HoverMenuItems_Shapes = ({
       name: "DashedArrow",
       bgImg: Dash_Arrow,
       whatItDoes: () => {
-        if (Drawing === "DashedArrow") {
+        if (drawing === "DashedArrow") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("DashedArrow");
@@ -87,7 +87,7 @@ export const HoverMenuItems_Shapes = ({
       name: "DashedRectangle",
       bgImg: Dash_Rectangle,
       whatItDoes: () => {
-        if (Drawing === "DashedRectangle") {
+        if (drawing === "DashedRectangle") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("DashedRectangle");
@@ -100,7 +100,7 @@ export const HoverMenuItems_Shapes = ({
       name: "DashedLine",
       bgImg: Dash_Line,
       whatItDoes: () => {
-        if (Drawing === "DashedLine") {
+        if (drawing === "DashedLine") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("DashedLine");
@@ -113,7 +113,7 @@ export const HoverMenuItems_Shapes = ({
       name: "DashedCircle",
       bgImg: Dash_Circle,
       whatItDoes: () => {
-        if (Drawing === "DashedCircle") {
+        if (drawing === "DashedCircle") {
           setCanDraw(!canDraw);
         } else {
           SetDrawing("DashedCircle");
