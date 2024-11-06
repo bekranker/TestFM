@@ -16,7 +16,7 @@ export const TaktikItem = ({ selectTaktikEvent, bg, name }) => {
           backgroundClip: "black",
           backgroundPosition: "center",
         }}
-        onMouseDown={() => selectTaktikEvent()}
+        onMouseDown={selectTaktikEvent}
       >
         <div className="tactic-item-bg">
           <div className="tactic-item-name">

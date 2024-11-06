@@ -32,7 +32,7 @@
   position: absolute;
   width: 285px;
   margin-left: 120px;
-  margin-top: 130px;
+  margin-top: 210px;
   height: 130px;
   z-index: 3;
   list-style-type: none;
@@ -40,7 +40,6 @@
 }
 
 .hover-menu-item-parent {
-  margin: 0px;
   border: solid;
   border-color: #717485;
   border-radius: 17px;

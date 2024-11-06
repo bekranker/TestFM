@@ -105,6 +105,7 @@ const taktiks = [
     taktikName: "3-4-3",
     coverImage: Saha_3_4_3,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-468, -150),
       new Vector2(-468, -35),
       new Vector2(-468, 120),
@@ -121,6 +122,7 @@ const taktiks = [
     taktikName: "4-2-2-2 DOS OOS POKY",
     coverImage: Saha_4_2_2_2_DOS_OOS_POKY,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-292, -330),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
@@ -137,6 +139,7 @@ const taktiks = [
     taktikName: "4-2-3-1 DOS OOS WIDE",
     coverImage: Saha_4_2_3_1_DOS_OOS_WIDE,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
       new Vector2(-292, -330),
@@ -153,6 +156,7 @@ const taktiks = [
     taktikName: "4-2-4 DOS WIDE",
     coverImage: Saha_4_2_4_DOS_WIDE,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
       new Vector2(-292, -330),
@@ -169,6 +173,7 @@ const taktiks = [
     taktikName: "4-3-2-1 DOS COS POKY",
     coverImage: Saha_4_3_2_1_DOS_COS_POKY,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
       new Vector2(-292, -330),
@@ -185,6 +190,7 @@ const taktiks = [
     taktikName: "4-3-3 DOS WIDE",
     coverImage: Saha_4_3_3_DOS_WIDE,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
       new Vector2(-292, -330),
@@ -201,6 +207,7 @@ const taktiks = [
     taktikName: "4-4-2",
     coverImage: Saha_4_4_2,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
       new Vector2(-292, -330),
@@ -217,6 +224,7 @@ const taktiks = [
     taktikName: "4-4-2 DIOMAND POKY",
     coverImage: Saha_4_4_2_DIOMAND_POKY,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
       new Vector2(-292, -330),
@@ -233,6 +241,7 @@ const taktiks = [
     taktikName: "5-2-1-2 DOS OOS",
     coverImage: Saha_5_2_1_2_DOS_OOS,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-464, -37),
       new Vector2(-468, 118),
@@ -249,6 +258,7 @@ const taktiks = [
     taktikName: "5-2-2-1 DOS OOS",
     coverImage: Saha_5_2_2_1_DOS_OOS,
     poses: [
+      new Vector2(-579, -9),
       new Vector2(-463, -148),
       new Vector2(-464, -37),
       new Vector2(-468, 118),
@@ -261,8 +271,40 @@ const taktiks = [
       new Vector2(540, 36),
     ],
   },
-  { taktikName: "5-2-3-1 DOS WIDE", coverImage: Saha_5_2_3_DOS_WIDE },
-  { taktikName: "5-2-2 DOS KB", coverImage: Saha_5_2_2_DOS_KB },
+  {
+    taktikName: "5-2-3-1 DOS WIDE",
+    coverImage: Saha_5_2_3_DOS_WIDE,
+    poses: [
+      new Vector2(-579, -9),
+      new Vector2(-463, -148),
+      new Vector2(-464, -37),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-285, -131),
+      new Vector2(-285, 66),
+      new Vector2(-306, 305),
+      new Vector2(278, -311),
+      new Vector2(540, -512),
+      new Vector2(289, 293),
+    ],
+  },
+  {
+    taktikName: "5-2-2 DOS KB",
+    coverImage: Saha_5_2_2_DOS_KB,
+    poses: [
+      new Vector2(-579, -9),
+      new Vector2(-463, -148),
+      new Vector2(-464, -37),
+      new Vector2(-468, 118),
+      new Vector2(-292, -330),
+      new Vector2(-291, 24),
+      new Vector2(-81, 59),
+      new Vector2(-81, -118),
+      new Vector2(-306, 305),
+      new Vector2(540, -51),
+      new Vector2(540, 36),
+    ],
+  },
 ];
 
 function App() {
@@ -438,7 +480,7 @@ function App() {
                 </svg>
 
                 <div className="tactic-text-info">
-                  <a style={{ color: "#9B9EAF" }}>Formation:</a>
+                  <a style={{ color: "#9B9EAF" }}> </a>
                   {selectedTaktik.taktikName}
                 </div>
               </header>
@@ -447,10 +489,14 @@ function App() {
                   className="container-tactik-selection"
                   style={anim}
                 >
-                  {taktiks.map((item, _) => (
+                  {taktiks.map((item, index) => (
                     <TaktikItem
                       selectTaktikEvent={() => {
                         setSelectedTaktik(item);
+                        firstPositions.map((itemFP, indexFP) => {
+                          itemFP = item.poses[indexFP];
+                          console.log(itemFP);
+                        });
                       }}
                       bg={item.coverImage}
                       name={item.taktikName}
