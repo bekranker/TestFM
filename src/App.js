@@ -1,3 +1,4 @@
+// Importing necessary components and modules
 import { SoccerPlayer } from "./Components/SoccerPlayer";
 import { Ball } from "./Components/ball";
 import React, { useRef, useState, useEffect } from "react";
@@ -34,6 +35,7 @@ import {
   Forvet,
 } from "./Components/PlayerRoles";
 import DrawMultipleShapesWithCanvas from "./Components/DrawShapesWithCanvas";
+// Importing field images for different tactics
 import Saha_3_4_3 from "./Halisahalar/3-4-3_SAHA.png";
 import Saha_4_2_2_2_DOS_OOS_POKY from "./Halisahalar/4-2-2-2(DOS-OOS-POKY)_SAHA.png";
 import Saha_4_2_3_1_DOS_OOS_WIDE from "./Halisahalar/4-2-3-1(DOS-OOS-WIDE)_SAHA.png";
@@ -46,6 +48,9 @@ import Saha_5_2_1_2_DOS_OOS from "./Halisahalar/5-2-1-2(DOS-OOS)_SAHA.png";
 import Saha_5_2_2_1_DOS_OOS from "./Halisahalar/5-2-2-1(DOS-OOS)_SAHA.png";
 import Saha_5_2_3_DOS_WIDE from "./Halisahalar/5-2-3(DOS-WIDE)_SAHA.png";
 import Saha_5_2_2_DOS_KB from "./Halisahalar/5-2-2(DOS-KB)_SAHA.png";
+
+// Custom hook to detect the user's platform (Desktop, Android, iOS, etc.)
+
 function usePlatform() {
   const [platform, setPlatform] = useState("");
 
@@ -65,6 +70,7 @@ function usePlatform() {
 
   return platform;
 }
+// Array containing all player role types
 
 const allTypes = [
   Kaleci,
@@ -82,6 +88,7 @@ const allTypes = [
   ForvetArkasi,
   Forvet,
 ];
+// Function to determine the correct role data based on player position
 
 function setCorrectData(xV, yV) {
   let position = new Vector2(xV, yV);
@@ -91,6 +98,8 @@ function setCorrectData(xV, yV) {
     }
   }
 }
+// Function to determine the correct role data based on player position
+
 function isWithinBounds(position, data) {
   return (
     position.x >= data.min.x &&
@@ -99,7 +108,7 @@ function isWithinBounds(position, data) {
     position.y <= data.min.y
   );
 }
-
+// Array of tactic objects with tactic names, cover images, and player positions
 const taktiks = [
   {
     taktikName: "3-4-3",
@@ -308,9 +317,13 @@ const taktiks = [
 ];
 
 function App() {
+  const [selectedChildFeatureState, setSelectedChildFeature] = useState("");
+  const [propsState, setProps] = useState(Kaleci);
+  const [selectedFeatureState, setSelectedFeature] = useState("");
   const [rotateValue, setRotateValue] = useState(0);
   const fieldRef = useRef();
   const [taktikLabelOpen, setTaktikLabelOpen] = useState(false);
+  // Object for storing color values
   const [colors, setColors] = useState({
     backgroundColor: "#333647",
     borderColor: "#ffffff",
@@ -318,6 +331,7 @@ function App() {
   });
   const [hover, setHover] = useState(false);
   const [selectedTaktik, setSelectedTaktik] = useState(taktiks[0]);
+  // Function to capture the soccer field as an image
   const captureField = () => {
     if (fieldRef.current) {
       html2canvas(fieldRef.current, { scale: 2 }).then((canvas) => {
@@ -328,9 +342,11 @@ function App() {
       });
     }
   };
+  // Animation effect for fading out when hovering
   const fadeOutAnim = useSpring({
     opacity: hover ? 0.2 : 1,
   });
+  // Event handler for toggling rotation and label visibility
   const onClickEvent = () => {
     setFlip(!flip);
     if (flip) {
@@ -377,6 +393,8 @@ function App() {
     new Vector2(488, 82),
   ];
   return (
+    // JSX component rendering the soccer field app interface
+
     <>
       {usePlatform() === "Desktop" && (
         <div className="App">
@@ -524,16 +542,18 @@ function App() {
                 )}
               </div>
 
-              {firstPositions.map((item, _) => {
-                return (
-                  <>
-                    <SoccerPlayer
-                      onDragHandler={() => setCorrectData(item.x, item.y)}
-                      position={{ x: item.x, y: item.y }}
-                    />
-                  </>
-                );
-              })}
+              <SoccerPlayer
+                onDragHandlerEvent={setCorrectData}
+                defaultPosition={{ x: 0, y: 0 }}
+                hooks={{
+                  propsState: propsState,
+                  setProps: setProps,
+                  selectedFeatureState: selectedFeatureState,
+                  setSelectedFeature: setSelectedFeature,
+                  selectedChildFeatureState: selectedChildFeatureState,
+                  setSelectedChildFeature: setSelectedChildFeature,
+                }}
+              />
 
               <Ball />
             </header>

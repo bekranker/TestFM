@@ -2,81 +2,89 @@ import React, { useState, useRef } from "react";
 import "../css/players.css";
 import "../css/propListMenu.css";
 import "../css/player-prop-list.css";
-import Vector2 from "../Components/Vector2";
 import { InMenuItem } from "./InMenuItem";
 import { useSpring, animated } from "react-spring";
 import Draggable from "react-draggable";
 
-export const SoccerPlayer = ({ onDragHandler, position }) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [selectedChildFeature, setSelectedChildFeature] = useState("");
-  const playerRole = onDragHandler(position);
-  const [props, setProps] = useState({
-    coordinate: new Vector2(position.x, position.y),
-    datas: [
-      { name: "Kaleci", shortName: "K", Props: ["Savunma"] },
-      {
-        name: "Libero Kaleci",
-        shortName: "LK",
-        Props: ["Savunma", "Destek", "Hücum"],
-      },
-    ],
-  });
-  const [selectedFeature, setSelectedFeature] = useState("");
-  const [colors, setColors] = useState({
+// Main component for the soccer player
+export const SoccerPlayer = ({ onDragHandlerEvent, hooks }) => {
+  // Initialize state using values from the ChangePlayerData function
+  const {
+    propsState,
+    selectedFeatureState,
+    selectedChildFeatureState,
+    setProps,
+    setSelectedFeature,
+    setSelectedChildFeature,
+  } = hooks;
+  // States for UI and player data
+  const [showMenuState, setShowMenu] = useState(false);
+  const [colorsState, setColors] = useState({
     backgroundColor: "#ffffff",
     borderColor: "#ffffff",
     color: "#7800e0",
   });
+
+  // Animation settings for the menu
   const anim = useSpring({
-    opacity: showMenu ? 1 : 0,
-    transform: showMenu ? "translateY(0)" : "translateY(-10px)",
-    display: showMenu ? "block" : "none",
+    opacity: showMenuState ? 1 : 0,
+    transform: showMenuState ? "translateY(0)" : "translateY(-10px)",
+    display: showMenuState ? "block" : "none",
   });
+
+  // Function to handle selecting a child feature
   const handleSelectedChildFeature = (name) => {
     setSelectedChildFeature(name);
   };
 
+  // Function to handle selecting a feature
   const handleSelectedFeature = (name) => {
     setSelectedFeature(name);
   };
-  const handleMouseClick = () => {};
 
+  // Dragging function to update player coordinates and selected features
   const dragginFunc = (e) => {
-    setProps(onDragHandler(e.clientX, e.clientY));
-    if (props !== undefined) {
+    setProps(onDragHandlerEvent(e.clientX, e.clientY));
+    if (propsState !== undefined) {
       handleSelectedChildFeature(
-        props.datas[0].name
+        propsState.datas[0].name
           .split(" ")
           .map((word) => word.charAt(0).toUpperCase())
       );
-      handleSelectedFeature(props.datas[0].shortName);
+      handleSelectedFeature(propsState.datas[0].shortName);
     }
   };
+
+  // Renders InMenuItem components based on player data
   function a() {
-    if (props === undefined) {
+    if (propsState === undefined) {
       return;
     } else {
-      return props.datas.map((item, index) => (
+      return propsState.datas.map((item, index) => (
         <InMenuItem
           key={index}
           shortName={item.shortName}
           name={item.name}
           childProps={item.Props}
-          props={props}
+          propsState={propsState}
           handleSelectedChildFeature={handleSelectedChildFeature}
           handleSelectedFeature={handleSelectedFeature}
         />
       ));
     }
   }
-  const playerRef = useRef(null); // Referansı tanımlıyoruz
-  const menuRef = useRef(null); // Menü için referans
+
+  // References for player container and menu elements
+  const playerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  // Shows menu on mouse enter
   const handleMouseEnter = () => {
     setShowMenu(true);
   };
+
+  // Hides menu on mouse leave if the cursor is outside both player and menu areas
   const handleMouseLeave = (e) => {
-    // Menü dışına çıkıldığında yalnızca kapanacak
     const playerRect = playerRef.current.getBoundingClientRect();
     const menuRect = menuRef.current.getBoundingClientRect();
     const isMouseInsideMenu =
@@ -94,9 +102,11 @@ export const SoccerPlayer = ({ onDragHandler, position }) => {
       setShowMenu(false);
     }
   };
+
+  // Renders the draggable player component with hover effects and menu
   return (
     <>
-      <Draggable onDrag={dragginFunc} defaultPosition={position}>
+      <Draggable onDrag={dragginFunc}>
         <div
           className="player-container"
           onMouseEnter={() => handleMouseEnter()}
@@ -105,10 +115,9 @@ export const SoccerPlayer = ({ onDragHandler, position }) => {
           <div
             ref={playerRef}
             className="soccerplayer-background"
-            style={colors}
+            style={colorsState}
             onMouseDown={() => {
-              handleMouseClick();
-              if (!showMenu) {
+              if (!showMenuState) {
                 setColors({
                   backgroundColor: "#ffffff",
                   borderColor: "#ffffff",
@@ -137,11 +146,11 @@ export const SoccerPlayer = ({ onDragHandler, position }) => {
               });
             }}
           >
-            <span className="info">{selectedFeature}</span>
-            <span className="info-child">{selectedChildFeature}</span>
+            <span className="info">{selectedFeatureState}</span>
+            <span className="info-child">{selectedChildFeatureState}</span>
           </div>
           {
-            // Burada showMenu kontrolü ekle
+            // Animated menu that shows when showMenuState is true
             <animated.div
               className="menu"
               style={anim}
