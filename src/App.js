@@ -364,17 +364,17 @@ function App() {
   const [drawing, SetDrawing] = useState("");
   const [canDraw, SetCanDraw] = useState(false);
   const firstPositions = [
-    new Vector2(-480, -412),
-    new Vector2(-440, -412),
-    new Vector2(-400, -412),
-    new Vector2(-360, -412),
-    new Vector2(-320, -412),
-    new Vector2(-280, -412),
-    new Vector2(-240, -412),
-    new Vector2(-200, -412),
-    new Vector2(-160, -412),
-    new Vector2(-120, -412),
-    new Vector2(-80, -412),
+    new Vector2(-579, -9),
+    new Vector2(-468, -150),
+    new Vector2(-468, -35),
+    new Vector2(-468, 120),
+    new Vector2(-80, -330),
+    new Vector2(-80, 60),
+    new Vector2(-80, 118),
+    new Vector2(-80, 307),
+    new Vector2(488, -104),
+    new Vector2(488, -12),
+    new Vector2(488, 82),
   ];
   return (
     <>
@@ -528,7 +528,7 @@ function App() {
                 return (
                   <>
                     <SoccerPlayer
-                      onDragHandler={setCorrectData}
+                      onDragHandler={() => setCorrectData(item.x, item.y)}
                       position={{ x: item.x, y: item.y }}
                     />
                   </>

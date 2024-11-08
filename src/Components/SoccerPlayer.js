@@ -10,8 +10,9 @@ import Draggable from "react-draggable";
 export const SoccerPlayer = ({ onDragHandler, position }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedChildFeature, setSelectedChildFeature] = useState("");
+  const playerRole = onDragHandler(position);
   const [props, setProps] = useState({
-    coordinate: new Vector2(0, 0),
+    coordinate: new Vector2(position.x, position.y),
     datas: [
       { name: "Kaleci", shortName: "K", Props: ["Savunma"] },
       {

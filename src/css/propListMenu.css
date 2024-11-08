@@ -3,7 +3,7 @@
   top: 50px;
   left: 0;
   border: 1px solid #717485;
-  z-index: 1;
+  z-index: 9;
   background-color: #242834;
   border-radius: 6px;
 }
@@ -13,6 +13,8 @@
 }
 
 .in-menu-item {
+  z-index: 9;
+
   position: relative;
   border-bottom: 1px solid #ccc;
   color: #9b9eaf;
@@ -22,6 +24,8 @@
   padding-left: 0px;
 }
 .in-menu {
+  z-index: 9;
+
   padding: 0px;
   margin: 0px;
   background-color: #242834;
