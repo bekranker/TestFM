@@ -1,4 +1,5 @@
 // Importing necessary components and modules
+import { taktiks } from "./Components/taktiks/taktiks";
 import { SoccerPlayer } from "./Components/SoccerPlayer";
 import { Ball } from "./Components/ball";
 import React, { useRef, useState, useEffect } from "react";
@@ -35,19 +36,6 @@ import {
   Forvet,
 } from "./Components/PlayerRoles";
 import DrawMultipleShapesWithCanvas from "./Components/DrawShapesWithCanvas";
-// Importing field images for different tactics
-import Saha_3_4_3 from "./Halisahalar/3-4-3_SAHA.png";
-import Saha_4_2_2_2_DOS_OOS_POKY from "./Halisahalar/4-2-2-2(DOS-OOS-POKY)_SAHA.png";
-import Saha_4_2_3_1_DOS_OOS_WIDE from "./Halisahalar/4-2-3-1(DOS-OOS-WIDE)_SAHA.png";
-import Saha_4_2_4_DOS_WIDE from "./Halisahalar/4-2-4(DOS-WIDE)_SAHA.png";
-import Saha_4_3_2_1_DOS_COS_POKY from "./Halisahalar/4-3-2-1(DOS-COS-POKY)_SAHA.png";
-import Saha_4_3_3_DOS_WIDE from "./Halisahalar/4-3-3(DOS-WIDE)_SAHA.png";
-import Saha_4_4_2 from "./Halisahalar/4-4-2_SAHA.png";
-import Saha_4_4_2_DIOMAND_POKY from "./Halisahalar/4-4-2(DIAMOND-POKY)_SAHA.png";
-import Saha_5_2_1_2_DOS_OOS from "./Halisahalar/5-2-1-2(DOS-OOS)_SAHA.png";
-import Saha_5_2_2_1_DOS_OOS from "./Halisahalar/5-2-2-1(DOS-OOS)_SAHA.png";
-import Saha_5_2_3_DOS_WIDE from "./Halisahalar/5-2-3(DOS-WIDE)_SAHA.png";
-import Saha_5_2_2_DOS_KB from "./Halisahalar/5-2-2(DOS-KB)_SAHA.png";
 
 // Custom hook to detect the user's platform (Desktop, Android, iOS, etc.)
 
@@ -109,219 +97,15 @@ function isWithinBounds(position, data) {
   );
 }
 // Array of tactic objects with tactic names, cover images, and player positions
-const taktiks = [
-  {
-    taktikName: "3-4-3",
-    coverImage: Saha_3_4_3,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-468, -150),
-      new Vector2(-468, -35),
-      new Vector2(-468, 120),
-      new Vector2(-80, -330),
-      new Vector2(-80, 60),
-      new Vector2(-80, 118),
-      new Vector2(-80, 307),
-      new Vector2(488, -104),
-      new Vector2(488, -12),
-      new Vector2(488, 82),
-    ],
-  },
-  {
-    taktikName: "4-2-2-2 DOS OOS POKY",
-    coverImage: Saha_4_2_2_2_DOS_OOS_POKY,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-292, -330),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-285, -131),
-      new Vector2(-285, 66),
-      new Vector2(-306, 305),
-      new Vector2(287, -150),
-      new Vector2(287, -125),
-      new Vector2(540, -50),
-      new Vector2(540, -124),
-    ],
-  },
-  {
-    taktikName: "4-2-3-1 DOS OOS WIDE",
-    coverImage: Saha_4_2_3_1_DOS_OOS_WIDE,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-306, 305),
-      new Vector2(-285, -131),
-      new Vector2(-284, 66),
-      new Vector2(278, -311),
-      new Vector2(308, -20),
-      new Vector2(289, -293),
-      new Vector2(540, -12),
-    ],
-  },
-  {
-    taktikName: "4-2-4 DOS WIDE",
-    coverImage: Saha_4_2_4_DOS_WIDE,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-306, 305),
-      new Vector2(-285, -131),
-      new Vector2(-284, 66),
-      new Vector2(278, -311),
-      new Vector2(289, 293),
-      new Vector2(587, -51),
-      new Vector2(540, 36),
-    ],
-  },
-  {
-    taktikName: "4-3-2-1 DOS COS POKY",
-    coverImage: Saha_4_3_2_1_DOS_COS_POKY,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-306, 305),
-      new Vector2(-291, -24),
-      new Vector2(-81, 59),
-      new Vector2(-81, -118),
-      new Vector2(287, -150),
-      new Vector2(309, -124),
-      new Vector2(540, -12),
-    ],
-  },
-  {
-    taktikName: "4-3-3 DOS WIDE",
-    coverImage: Saha_4_3_3_DOS_WIDE,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-306, 305),
-      new Vector2(-291, -24),
-      new Vector2(-81, 59),
-      new Vector2(-81, -118),
-      new Vector2(278, -311),
-      new Vector2(289, -293),
-      new Vector2(540, -12),
-    ],
-  },
-  {
-    taktikName: "4-4-2",
-    coverImage: Saha_4_4_2,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-306, 305),
-      new Vector2(-82, -328),
-      new Vector2(-81, 59),
-      new Vector2(-81, -118),
-      new Vector2(-71, -307),
-      new Vector2(540, -51),
-      new Vector2(540, 36),
-    ],
-  },
-  {
-    taktikName: "4-4-2 DIOMAND POKY",
-    coverImage: Saha_4_4_2_DIOMAND_POKY,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-306, 305),
-      new Vector2(-291, -24),
-      new Vector2(-81, 59),
-      new Vector2(-81, -118),
-      new Vector2(308, -20),
-      new Vector2(540, -51),
-      new Vector2(540, 36),
-    ],
-  },
-  {
-    taktikName: "5-2-1-2 DOS OOS",
-    coverImage: Saha_5_2_1_2_DOS_OOS,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-464, -37),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-285, 131),
-      new Vector2(-285, 66),
-      new Vector2(-306, 305),
-      new Vector2(308, -20),
-      new Vector2(540, -51),
-      new Vector2(540, 36),
-    ],
-  },
-  {
-    taktikName: "5-2-2-1 DOS OOS",
-    coverImage: Saha_5_2_2_1_DOS_OOS,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-464, -37),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-285, 131),
-      new Vector2(-285, 66),
-      new Vector2(-306, 305),
-      new Vector2(308, -20),
-      new Vector2(540, -51),
-      new Vector2(540, 36),
-    ],
-  },
-  {
-    taktikName: "5-2-3-1 DOS WIDE",
-    coverImage: Saha_5_2_3_DOS_WIDE,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-464, -37),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-285, -131),
-      new Vector2(-285, 66),
-      new Vector2(-306, 305),
-      new Vector2(278, -311),
-      new Vector2(540, -512),
-      new Vector2(289, 293),
-    ],
-  },
-  {
-    taktikName: "5-2-2 DOS KB",
-    coverImage: Saha_5_2_2_DOS_KB,
-    poses: [
-      new Vector2(-579, -9),
-      new Vector2(-463, -148),
-      new Vector2(-464, -37),
-      new Vector2(-468, 118),
-      new Vector2(-292, -330),
-      new Vector2(-291, 24),
-      new Vector2(-81, 59),
-      new Vector2(-81, -118),
-      new Vector2(-306, 305),
-      new Vector2(540, -51),
-      new Vector2(540, 36),
-    ],
-  },
-];
 
 function App() {
-  const [selectedChildFeatureState, setSelectedChildFeature] = useState("");
-  const [propsState, setProps] = useState(Kaleci);
-  const [selectedFeatureState, setSelectedFeature] = useState("");
+  //bottom text on the players
+
+  //dropdown menu arrow for animation
   const [rotateValue, setRotateValue] = useState(0);
+  //background
   const fieldRef = useRef();
+  //taktik drop menu
   const [taktikLabelOpen, setTaktikLabelOpen] = useState(false);
   // Object for storing color values
   const [colors, setColors] = useState({
@@ -329,7 +113,9 @@ function App() {
     borderColor: "#ffffff",
     color: "#7800e0",
   });
+  //player hovering
   const [hover, setHover] = useState(false);
+  //when we click a menu or child menu item this value set itself that value.
   const [selectedTaktik, setSelectedTaktik] = useState(taktiks[0]);
   // Function to capture the soccer field as an image
   const captureField = () => {
@@ -379,19 +165,6 @@ function App() {
   const [drawComponent, setDrawComponent] = useState(<DashedRectangle />);
   const [drawing, SetDrawing] = useState("");
   const [canDraw, SetCanDraw] = useState(false);
-  const firstPositions = [
-    new Vector2(-579, -9),
-    new Vector2(-468, -150),
-    new Vector2(-468, -35),
-    new Vector2(-468, 120),
-    new Vector2(-80, -330),
-    new Vector2(-80, 60),
-    new Vector2(-80, 118),
-    new Vector2(-80, 307),
-    new Vector2(488, -104),
-    new Vector2(488, -12),
-    new Vector2(488, 82),
-  ];
   return (
     // JSX component rendering the soccer field app interface
 
@@ -511,10 +284,6 @@ function App() {
                     <TaktikItem
                       selectTaktikEvent={() => {
                         setSelectedTaktik(item);
-                        firstPositions.map((itemFP, indexFP) => {
-                          itemFP = item.poses[indexFP];
-                          console.log(itemFP);
-                        });
                       }}
                       bg={item.coverImage}
                       name={item.taktikName}
@@ -541,18 +310,9 @@ function App() {
                   />
                 )}
               </div>
-
               <SoccerPlayer
                 onDragHandlerEvent={setCorrectData}
-                defaultPosition={{ x: 0, y: 0 }}
-                hooks={{
-                  propsState: propsState,
-                  setProps: setProps,
-                  selectedFeatureState: selectedFeatureState,
-                  setSelectedFeature: setSelectedFeature,
-                  selectedChildFeatureState: selectedChildFeatureState,
-                  setSelectedChildFeature: setSelectedChildFeature,
-                }}
+                pos={{ x: 0, y: 0 }}
               />
 
               <Ball />

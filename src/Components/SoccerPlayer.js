@@ -7,16 +7,9 @@ import { useSpring, animated } from "react-spring";
 import Draggable from "react-draggable";
 
 // Main component for the soccer player
-export const SoccerPlayer = ({ onDragHandlerEvent, hooks }) => {
+export const SoccerPlayer = ({ onDragHandlerEvent, pos }) => {
   // Initialize state using values from the ChangePlayerData function
-  const {
-    propsState,
-    selectedFeatureState,
-    selectedChildFeatureState,
-    setProps,
-    setSelectedFeature,
-    setSelectedChildFeature,
-  } = hooks;
+
   // States for UI and player data
   const [showMenuState, setShowMenu] = useState(false);
   const [colorsState, setColors] = useState({
@@ -24,7 +17,11 @@ export const SoccerPlayer = ({ onDragHandlerEvent, hooks }) => {
     borderColor: "#ffffff",
     color: "#7800e0",
   });
-
+  const [selectedChildFeatureState, setSelectedChildFeature] = useState("");
+  //top text on the players
+  const [selectedFeatureState, setSelectedFeature] = useState("");
+  //menu and child menu item's names.
+  const [propsState, setProps] = useState({});
   // Animation settings for the menu
   const anim = useSpring({
     opacity: showMenuState ? 1 : 0,
@@ -57,7 +54,12 @@ export const SoccerPlayer = ({ onDragHandlerEvent, hooks }) => {
 
   // Renders InMenuItem components based on player data
   function a() {
-    if (propsState === undefined) {
+    if (
+      propsState === undefined ||
+      propsState === null ||
+      selectedChildFeatureState === "" ||
+      selectedFeatureState === ""
+    ) {
       return;
     } else {
       return propsState.datas.map((item, index) => (
@@ -106,7 +108,7 @@ export const SoccerPlayer = ({ onDragHandlerEvent, hooks }) => {
   // Renders the draggable player component with hover effects and menu
   return (
     <>
-      <Draggable onDrag={dragginFunc}>
+      <Draggable onDrag={dragginFunc} positionOffset={pos}>
         <div
           className="player-container"
           onMouseEnter={() => handleMouseEnter()}
