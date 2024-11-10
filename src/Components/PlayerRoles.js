@@ -3,83 +3,83 @@ import Vector2 from "../Components/Vector2";
 export const Coordinates = [
   {
     /* kaleci */
-    min: new Vector2(302, 702),
-    max: new Vector2(349, 595),
+    min: new Vector2(302, 642),
+    max: new Vector2(349, 535),
   },
   {
     /* stoperler */
-    min: new Vector2(353, 809),
-    max: new Vector2(673, 496),
+    min: new Vector2(353, 749),
+    max: new Vector2(673, 436),
   },
   {
     /* arka alt stoperler */
-    min: new Vector2(302, 809),
-    max: new Vector2(351, 709),
+    min: new Vector2(302, 749),
+    max: new Vector2(351, 649),
   },
   {
     /* arka üst stoperler */
-    min: new Vector2(304, 595),
-    max: new Vector2(354, 496),
+    min: new Vector2(304, 535),
+    max: new Vector2(354, 436),
   },
   {
     /* sahte defanslar */
-    min: new Vector2(676, 809),
-    max: new Vector2(877, 496),
+    min: new Vector2(676, 749),
+    max: new Vector2(877, 436),
   },
   {
     /* Bekler üst */
-    min: new Vector2(302, 496),
-    max: new Vector2(672, 256),
+    min: new Vector2(302, 436),
+    max: new Vector2(672, 196),
   },
   {
     /* sahte bekler üst */
-    min: new Vector2(672, 496),
-    max: new Vector2(877, 256),
+    min: new Vector2(672, 436),
+    max: new Vector2(877, 196),
   },
   {
     /* Sahte kanatlar üst */
-    min: new Vector2(877, 496),
-    max: new Vector2(1076, 256),
+    min: new Vector2(877, 436),
+    max: new Vector2(1076, 196),
   },
   {
     /* kanatlar üst */
-    min: new Vector2(1076, 496),
-    max: new Vector2(1493, 256),
+    min: new Vector2(1076, 436),
+    max: new Vector2(1493, 196),
   },
   {
     /* bekler Alt */
-    min: new Vector2(306, 1051),
-    max: new Vector2(673, 811),
+    min: new Vector2(306, 991),
+    max: new Vector2(673, 751),
   },
   {
     /* sahte bekler alt */
-    min: new Vector2(673, 1051),
-    max: new Vector2(877, 811),
+    min: new Vector2(673, 991),
+    max: new Vector2(877, 751),
   },
   {
     /* sahte kanatlar alt */
-    min: new Vector2(887, 1051),
-    max: new Vector2(1075, 811),
+    min: new Vector2(887, 991),
+    max: new Vector2(1075, 751),
   },
   {
     /* kanatlar alt */
-    min: new Vector2(1075, 1051),
-    max: new Vector2(1493, 811),
+    min: new Vector2(1075, 991),
+    max: new Vector2(1493, 751),
   },
   {
     /* orta saha */
-    min: new Vector2(881, 809),
-    max: new Vector2(1077, 496),
+    min: new Vector2(881, 749),
+    max: new Vector2(1077, 436),
   },
   {
     /* forvet arkası */
-    min: new Vector2(1077, 809),
-    max: new Vector2(1355, 496),
+    min: new Vector2(1077, 749),
+    max: new Vector2(1355, 436),
   },
   {
     /* forvet */
-    min: new Vector2(1355, 809),
-    max: new Vector2(1493, 497),
+    min: new Vector2(1355, 749),
+    max: new Vector2(1493, 437),
   },
 ];
 export const Kaleci = {

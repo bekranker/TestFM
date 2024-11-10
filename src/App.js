@@ -1,7 +1,6 @@
 // Importing necessary components and modules
 import { taktiks } from "./Components/taktiks/taktiks";
 import { SoccerPlayer } from "./Components/SoccerPlayer";
-import { Ball } from "./Components/ball";
 import React, { useRef, useState, useEffect } from "react";
 import "./App.css";
 import Vector2 from "./Components/Vector2";

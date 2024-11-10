@@ -1,28 +1,28 @@
 import React from "react";
 
 const Coordinates = [
-  { /* kaleci */ min: { x: 302, y: 702 }, max: { x: 349, y: 595 } },
-  { /* stoperler */ min: { x: 353, y: 809 }, max: { x: 673, y: 496 } },
-  { /* arka alt stoperler */ min: { x: 302, y: 809 }, max: { x: 351, y: 709 } },
-  { /* arka üst stoperler */ min: { x: 304, y: 595 }, max: { x: 354, y: 496 } },
-  { /* sahte defanslar */ min: { x: 676, y: 809 }, max: { x: 877, y: 496 } },
-  { /* Bekler üst */ min: { x: 302, y: 496 }, max: { x: 672, y: 256 } },
-  { /* sahte bekler üst */ min: { x: 672, y: 496 }, max: { x: 877, y: 256 } },
+  { /* kaleci */ min: { x: 302, y: 642 }, max: { x: 349, y: 535 } },
+  { /* stoperler */ min: { x: 353, y: 749 }, max: { x: 673, y: 436 } },
+  { /* arka alt stoperler */ min: { x: 302, y: 749 }, max: { x: 351, y: 649 } },
+  { /* arka üst stoperler */ min: { x: 304, y: 535 }, max: { x: 354, y: 436 } },
+  { /* sahte defanslar */ min: { x: 676, y: 749 }, max: { x: 877, y: 436 } },
+  { /* Bekler üst */ min: { x: 302, y: 436 }, max: { x: 672, y: 196 } },
+  { /* sahte bekler üst */ min: { x: 672, y: 436 }, max: { x: 877, y: 196 } },
   {
-    /* Sahte kanatlar üst */ min: { x: 877, y: 496 },
-    max: { x: 1076, y: 256 },
+    /* Sahte kanatlar üst */ min: { x: 877, y: 436 },
+    max: { x: 1076, y: 196 },
   },
-  { /* kanatlar üst */ min: { x: 1076, y: 496 }, max: { x: 1493, y: 256 } },
-  { /* bekler Alt */ min: { x: 306, y: 1051 }, max: { x: 673, y: 811 } },
-  { /* sahte bekler alt */ min: { x: 673, y: 1051 }, max: { x: 877, y: 811 } },
+  { /* kanatlar üst */ min: { x: 1076, y: 436 }, max: { x: 1493, y: 196 } },
+  { /* bekler Alt */ min: { x: 306, y: 991 }, max: { x: 673, y: 751 } },
+  { /* sahte bekler alt */ min: { x: 673, y: 991 }, max: { x: 877, y: 751 } },
   {
-    /* sahte kanatlar alt */ min: { x: 877, y: 1051 },
-    max: { x: 1075, y: 811 },
+    /* sahte kanatlar alt */ min: { x: 877, y: 991 },
+    max: { x: 1075, y: 751 },
   },
-  { /* kanatlar alt */ min: { x: 1075, y: 1051 }, max: { x: 1493, y: 811 } },
-  { /* orta saha */ min: { x: 881, y: 809 }, max: { x: 1077, y: 496 } },
-  { /* forvet arkası */ min: { x: 1077, y: 809 }, max: { x: 1355, y: 496 } },
-  { /* forvet */ min: { x: 1355, y: 809 }, max: { x: 1493, y: 497 } },
+  { /* kanatlar alt */ min: { x: 1075, y: 991 }, max: { x: 1493, y: 751 } },
+  { /* orta saha */ min: { x: 881, y: 749 }, max: { x: 1077, y: 436 } },
+  { /* forvet arkası */ min: { x: 1077, y: 749 }, max: { x: 1355, y: 436 } },
+  { /* forvet */ min: { x: 1355, y: 749 }, max: { x: 1493, y: 437 } },
 ];
 
 const Field = () => {
@@ -30,8 +30,8 @@ const Field = () => {
     <div
       style={{
         position: "absolute",
-        width: "1500px",
-        height: "1100px",
+        width: "100%",
+        height: "100%",
       }}
     >
       {Coordinates.map((coord, index) => {

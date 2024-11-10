@@ -16,7 +16,7 @@ export const taktiks = [
     taktikName: "3-4-3",
     coverImage: Saha_3_4_3,
     poses: [
-      { coordinate: new Vector2(-579, -9), role: "SS", childrole: "S" },
+      new Vector2(-579, 326),
       new Vector2(-468, -150),
       new Vector2(-468, -35),
       new Vector2(-468, 120),
@@ -33,7 +33,7 @@ export const taktiks = [
     taktikName: "4-2-2-2 DOS OOS POKY",
     coverImage: Saha_4_2_2_2_DOS_OOS_POKY,
     poses: [
-      new Vector2(-579, -9),
+      new Vector2(-579, 51),
       new Vector2(-292, -330),
       new Vector2(-463, -148),
       new Vector2(-468, 118),
