@@ -327,7 +327,6 @@ function App() {
                     />
                   );
                 })}
-              <Ball />
             </header>
           </animated.div>
         </div>
