@@ -34,9 +34,12 @@ import {
   OrtaSahalar,
   ForvetArkasi,
   Forvet,
+  StoperlerArkaAlt,
+  StoperlerArkaÜst,
 } from "./Components/PlayerRoles";
 import DrawMultipleShapesWithCanvas from "./Components/DrawShapesWithCanvas";
-
+import DrawSquare from "./Components/mouseDebuggrt";
+import Field from "./Components/taktiks/Field";
 // Custom hook to detect the user's platform (Desktop, Android, iOS, etc.)
 
 function usePlatform() {
@@ -63,6 +66,8 @@ function usePlatform() {
 const allTypes = [
   Kaleci,
   Stoperler,
+  StoperlerArkaAlt,
+  StoperlerArkaÜst,
   SahteDefanslar,
   BeklerUst,
   SahteBeklerUst,
@@ -99,7 +104,7 @@ function isWithinBounds(position, data) {
 // Array of tactic objects with tactic names, cover images, and player positions
 
 function App() {
-  //bottom text on the players
+  //State for checking did tactic change
 
   //dropdown menu arrow for animation
   const [rotateValue, setRotateValue] = useState(0);
@@ -116,7 +121,8 @@ function App() {
   //player hovering
   const [hover, setHover] = useState(false);
   //when we click a menu or child menu item this value set itself that value.
-  const [selectedTaktik, setSelectedTaktik] = useState(taktiks[0]);
+  const [selectedTaktik, setSelectedTaktik] = useState({});
+
   // Function to capture the soccer field as an image
   const captureField = () => {
     if (fieldRef.current) {
@@ -171,6 +177,7 @@ function App() {
     <>
       {usePlatform() === "Desktop" && (
         <div className="App">
+          <Field />
           <div className="navigation-bar bar-container">
             <NavigationButtons
               vHover={setHover}
@@ -310,11 +317,16 @@ function App() {
                   />
                 )}
               </div>
-              <SoccerPlayer
-                onDragHandlerEvent={setCorrectData}
-                pos={{ x: 0, y: 0 }}
-              />
-
+              {Object.keys(selectedTaktik).length > 0 &&
+                selectedTaktik.poses.map((item, index) => {
+                  return (
+                    <SoccerPlayer
+                      onDragHandlerEvent={setCorrectData}
+                      pos={{ x: item.x, y: item.y }}
+                      recordThat={selectedTaktik}
+                    />
+                  );
+                })}
               <Ball />
             </header>
           </animated.div>

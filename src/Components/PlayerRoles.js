@@ -3,73 +3,83 @@ import Vector2 from "../Components/Vector2";
 export const Coordinates = [
   {
     /* kaleci */
-    min: new Vector2(310, 646),
-    max: new Vector2(380, 444),
+    min: new Vector2(302, 702),
+    max: new Vector2(349, 595),
   },
   {
     /* stoperler */
-    min: new Vector2(380, 867),
-    max: new Vector2(495, 322),
+    min: new Vector2(353, 809),
+    max: new Vector2(673, 496),
+  },
+  {
+    /* arka alt stoperler */
+    min: new Vector2(302, 809),
+    max: new Vector2(351, 709),
+  },
+  {
+    /* arka üst stoperler */
+    min: new Vector2(304, 595),
+    max: new Vector2(354, 496),
   },
   {
     /* sahte defanslar */
-    min: new Vector2(495, 799),
-    max: new Vector2(840, 322),
+    min: new Vector2(676, 809),
+    max: new Vector2(877, 496),
   },
   {
     /* Bekler üst */
-    min: new Vector2(317, 322),
-    max: new Vector2(670, 170),
+    min: new Vector2(302, 496),
+    max: new Vector2(672, 256),
   },
   {
     /* sahte bekler üst */
-    min: new Vector2(670, 322),
-    max: new Vector2(840, 170),
+    min: new Vector2(672, 496),
+    max: new Vector2(877, 256),
   },
   {
     /* Sahte kanatlar üst */
-    min: new Vector2(840, 322),
-    max: new Vector2(1020, 170),
+    min: new Vector2(877, 496),
+    max: new Vector2(1076, 256),
   },
   {
     /* kanatlar üst */
-    min: new Vector2(1020, 322),
-    max: new Vector2(1300, 170),
+    min: new Vector2(1076, 496),
+    max: new Vector2(1493, 256),
   },
   {
     /* bekler Alt */
-    min: new Vector2(317, 920),
-    max: new Vector2(670, 770),
+    min: new Vector2(306, 1051),
+    max: new Vector2(673, 811),
   },
   {
     /* sahte bekler alt */
-    min: new Vector2(670, 920),
-    max: new Vector2(840, 770),
+    min: new Vector2(673, 1051),
+    max: new Vector2(877, 811),
   },
   {
     /* sahte kanatlar alt */
-    min: new Vector2(840, 920),
-    max: new Vector2(1020, 770),
+    min: new Vector2(887, 1051),
+    max: new Vector2(1075, 811),
   },
   {
     /* kanatlar alt */
-    min: new Vector2(1020, 920),
-    max: new Vector2(1300, 770),
+    min: new Vector2(1075, 1051),
+    max: new Vector2(1493, 811),
   },
   {
     /* orta saha */
-    min: new Vector2(840, 775),
-    max: new Vector2(1020, 322),
+    min: new Vector2(881, 809),
+    max: new Vector2(1077, 496),
   },
   {
     /* forvet arkası */
-    min: new Vector2(1020, 775),
-    max: new Vector2(1300, 322),
+    min: new Vector2(1077, 809),
+    max: new Vector2(1355, 496),
   },
   {
     /* forvet */
-    min: new Vector2(1300, 775),
-    max: new Vector2(1481, 322),
+    min: new Vector2(1355, 809),
+    max: new Vector2(1493, 497),
   },
 ];
 export const Kaleci = {
@@ -109,8 +119,60 @@ export const Stoperler = {
     },
   ],
 };
-export const SahteDefanslar = {
+export const StoperlerArkaAlt = {
   coordinate: Coordinates[2],
+  datas: [
+    {
+      name: "Standart Stoper",
+      shortName: "SS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+    { name: "Libero", shortName: "L", Props: ["Savunma", "Destek"] },
+    {
+      name: "Pasör Stoper",
+      shortName: "PS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+    {
+      name: "Çakılı Stoper",
+      shortName: "ÇS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+    {
+      name: "Kenar Stoper",
+      shortName: "KS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+  ],
+};
+export const StoperlerArkaÜst = {
+  coordinate: Coordinates[3],
+  datas: [
+    {
+      name: "Standart Stoper",
+      shortName: "SS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+    { name: "Libero", shortName: "L", Props: ["Savunma", "Destek"] },
+    {
+      name: "Pasör Stoper",
+      shortName: "PS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+    {
+      name: "Çakılı Stoper",
+      shortName: "ÇS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+    {
+      name: "Kenar Stoper",
+      shortName: "KS",
+      Props: ["Savunma", "Kesici", "Sigorta"],
+    },
+  ],
+};
+export const SahteDefanslar = {
+  coordinate: Coordinates[4],
   datas: [
     {
       name: "Defansif Orta Saha",
@@ -139,7 +201,7 @@ export const SahteDefanslar = {
   ],
 };
 export const BeklerUst = {
-  coordinate: Coordinates[3],
+  coordinate: Coordinates[5],
   datas: [
     {
       name: "Standart Bek",
@@ -162,7 +224,7 @@ export const BeklerUst = {
   ],
 };
 export const SahteBeklerUst = {
-  coordinate: Coordinates[4],
+  coordinate: Coordinates[6],
   datas: [
     {
       name: "Kanat Bek",
@@ -182,7 +244,7 @@ export const SahteBeklerUst = {
   ],
 };
 export const SahteKanatlarUst = {
-  coordinate: Coordinates[5],
+  coordinate: Coordinates[7],
   datas: [
     {
       name: "Çalışkan Kanat Oyuncusu",
@@ -196,7 +258,7 @@ export const SahteKanatlarUst = {
   ],
 };
 export const KanatlarUst = {
-  coordinate: Coordinates[6],
+  coordinate: Coordinates[8],
   datas: [
     { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
     {
@@ -212,7 +274,7 @@ export const KanatlarUst = {
   ],
 };
 export const BeklerAlt = {
-  coordinate: Coordinates[7],
+  coordinate: Coordinates[9],
   datas: [
     {
       name: "Standart Bek",
@@ -235,7 +297,7 @@ export const BeklerAlt = {
   ],
 };
 export const SahteBeklerAlt = {
-  coordinate: Coordinates[8],
+  coordinate: Coordinates[10],
   datas: [
     {
       name: "Kanat Bek",
@@ -255,7 +317,7 @@ export const SahteBeklerAlt = {
   ],
 };
 export const SahteKanatlarAlt = {
-  coordinate: Coordinates[9],
+  coordinate: Coordinates[11],
   datas: [
     {
       name: "Çalışkan Kanat Oyuncusu",
@@ -269,7 +331,7 @@ export const SahteKanatlarAlt = {
   ],
 };
 export const KanatlarAlt = {
-  coordinate: Coordinates[10],
+  coordinate: Coordinates[12],
   datas: [
     { name: "Kanat Oyuncusu", shortName: "K", Props: ["Destek", "Hücum"] },
     {
@@ -285,7 +347,7 @@ export const KanatlarAlt = {
   ],
 };
 export const OrtaSahalar = {
-  coordinate: Coordinates[11],
+  coordinate: Coordinates[13],
   datas: [
     {
       name: "Merkez Orta Saha",
@@ -314,7 +376,7 @@ export const OrtaSahalar = {
   ],
 };
 export const ForvetArkasi = {
-  coordinate: Coordinates[12],
+  coordinate: Coordinates[14],
   datas: [
     { name: "Ofansif Orta Saha", shortName: "OOS", Props: ["Destek", "Hücum"] },
     {
@@ -328,7 +390,7 @@ export const ForvetArkasi = {
   ],
 };
 export const Forvet = {
-  coordinate: Coordinates[13],
+  coordinate: Coordinates[15],
   datas: [
     { name: "Yardımcı Forvet", shortName: "YRD", Props: ["Destek", "Hücum"] },
     { name: "Yaratıcı Forvet", shortName: "YF", Props: ["Hücum"] },

@@ -1,16 +1,33 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../css/players.css";
 import "../css/propListMenu.css";
 import "../css/player-prop-list.css";
 import { InMenuItem } from "./InMenuItem";
 import { useSpring, animated } from "react-spring";
 import Draggable from "react-draggable";
+import Vector2 from "./Vector2";
 
 // Main component for the soccer player
-export const SoccerPlayer = ({ onDragHandlerEvent, pos }) => {
+export const SoccerPlayer = ({ onDragHandlerEvent, pos, recordThat }) => {
   // Initialize state using values from the ChangePlayerData function
 
   // States for UI and player data
+  const [propsState, setProps] = useState({
+    coordinate: new Vector2(pos.x, pos.y),
+    datas: [
+      { name: "Kaleci", shortName: "K", Props: ["Savunma"] },
+      {
+        name: "Libero Kaleci",
+        shortName: "LK",
+        Props: ["Savunma", "Destek", "Hücum"],
+      },
+    ],
+  });
+  useEffect(() => {
+    const { clientX, clientY } = { pos };
+    const e = { clientX, clientY };
+    dragginFunc(e);
+  }, recordThat);
   const [showMenuState, setShowMenu] = useState(false);
   const [colorsState, setColors] = useState({
     backgroundColor: "#ffffff",
@@ -21,7 +38,7 @@ export const SoccerPlayer = ({ onDragHandlerEvent, pos }) => {
   //top text on the players
   const [selectedFeatureState, setSelectedFeature] = useState("");
   //menu and child menu item's names.
-  const [propsState, setProps] = useState({});
+
   // Animation settings for the menu
   const anim = useSpring({
     opacity: showMenuState ? 1 : 0,
@@ -54,12 +71,7 @@ export const SoccerPlayer = ({ onDragHandlerEvent, pos }) => {
 
   // Renders InMenuItem components based on player data
   function a() {
-    if (
-      propsState === undefined ||
-      propsState === null ||
-      selectedChildFeatureState === "" ||
-      selectedFeatureState === ""
-    ) {
+    if (propsState === undefined || propsState === null) {
       return;
     } else {
       return propsState.datas.map((item, index) => (
