@@ -37,10 +37,8 @@ import {
   StoperlerArkaÜst,
 } from "./Components/PlayerRoles";
 import DrawMultipleShapesWithCanvas from "./Components/DrawShapesWithCanvas";
-import DrawSquare from "./Components/mouseDebuggrt";
-import Field from "./Components/taktiks/Field";
-// Custom hook to detect the user's platform (Desktop, Android, iOS, etc.)
 
+// Custom hook to detect the user's platform (Desktop, Android, iOS, etc.)
 function usePlatform() {
   const [platform, setPlatform] = useState("");
 
@@ -176,7 +174,6 @@ function App() {
     <>
       {usePlatform() === "Desktop" && (
         <div className="App">
-          <Field />
           <div className="navigation-bar bar-container">
             <NavigationButtons
               vHover={setHover}
@@ -320,8 +317,10 @@ function App() {
                 selectedTaktik.poses.map((item, index) => {
                   return (
                     <SoccerPlayer
+                      id={"player-" + index}
+                      instantFeatures={item.role}
                       onDragHandlerEvent={setCorrectData}
-                      pos={{ x: item.x, y: item.y }}
+                      pos={{ x: item.pos.x, y: item.pos.y }}
                       recordThat={selectedTaktik}
                     />
                   );

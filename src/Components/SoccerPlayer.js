@@ -4,13 +4,15 @@ import "../css/propListMenu.css";
 import "../css/player-prop-list.css";
 import { InMenuItem } from "./InMenuItem";
 import { useSpring, animated } from "react-spring";
-import Draggable from "react-draggable";
 import Vector2 from "./Vector2";
-
+import Draggable from "react-draggable";
 // Main component for the soccer player
-export const SoccerPlayer = ({ onDragHandlerEvent, pos, recordThat }) => {
-  // Initialize state using values from the ChangePlayerData function
-
+export const SoccerPlayer = ({
+  onDragHandlerEvent,
+  pos,
+  recordThat,
+  instantFeatures,
+}) => {
   // States for UI and player data
   const [propsState, setProps] = useState({
     coordinate: new Vector2(pos.x, pos.y),
@@ -23,20 +25,30 @@ export const SoccerPlayer = ({ onDragHandlerEvent, pos, recordThat }) => {
       },
     ],
   });
+
   useEffect(() => {
-    const { clientX, clientY } = { pos };
-    const e = { clientX, clientY };
-    dragginFunc(e);
+    setProps(instantFeatures);
+    handleSelectedChildFeature(
+      instantFeatures.datas[0].name
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase())
+    );
+    handleSelectedFeature(instantFeatures.datas[0].shortName);
   }, recordThat);
+
   const [showMenuState, setShowMenu] = useState(false);
+
   const [colorsState, setColors] = useState({
     backgroundColor: "#ffffff",
     borderColor: "#ffffff",
     color: "#7800e0",
   });
+
   const [selectedChildFeatureState, setSelectedChildFeature] = useState("");
+
   //top text on the players
   const [selectedFeatureState, setSelectedFeature] = useState("");
+
   //menu and child menu item's names.
 
   // Animation settings for the menu
@@ -120,7 +132,13 @@ export const SoccerPlayer = ({ onDragHandlerEvent, pos, recordThat }) => {
   // Renders the draggable player component with hover effects and menu
   return (
     <>
-      <Draggable onDrag={dragginFunc} positionOffset={pos}>
+      <Draggable
+        className="player-container"
+        positionOffset={pos}
+        onDrag={(e) => {
+          dragginFunc(e);
+        }}
+      >
         <div
           className="player-container"
           onMouseEnter={() => handleMouseEnter()}
