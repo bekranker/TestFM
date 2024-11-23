@@ -2,8 +2,14 @@
 
 .App {
   text-align: center;
+  height: 99%;
+  width: 99%;
 }
+#root{
+  height: 99%;
+  width: 99%;
 
+}
 .ball {
   height: 40vmin;
   pointer-events: none;
@@ -11,7 +17,7 @@
 
 .App-header {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

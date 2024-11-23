@@ -175,7 +175,7 @@ function App() {
       {usePlatform() === "Desktop" && (
         <div className="App">
           <div className="navigation-bar bar-container">
-            <NavigationButtons
+             {/* <NavigationButtons
               vHover={setHover}
               canDisplayHoverMenu={true}
               name="Arka Plan"
@@ -186,7 +186,7 @@ function App() {
               canDisplayHoverMenu={true}
               name="Kalem"
               customStyle={{ width: 163, height: 48 }}
-            />
+            /> */}
             <NavigationButtons
               vHover={setHover}
               canDisplayHoverMenu={true}
