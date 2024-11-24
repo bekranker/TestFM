@@ -28,7 +28,6 @@ export const SoccerPlayer = ({
 
   useEffect(() => {
     setProps(instantFeatures);
-    console.log(instantFeatures);
     handleSelectedChildFeature(
       instantFeatures.datas[0].name
         .split(" ")

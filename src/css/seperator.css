@@ -2,3 +2,13 @@
   width: 100%;
   display: inline-block;
 }
+.Erase{
+  position: absolute;
+  left: 1375px;
+  background-color: #333647;
+  border: 1px solid;
+  border-color: #717485;
+  border-radius: 7px;
+  color: hsl(231, 11%, 65%);
+  padding: 5px;
+}

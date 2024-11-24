@@ -98,9 +98,29 @@ function isWithinBounds(position, data) {
     position.y <= data.min.y
   );
 }
-// Array of tactic objects with tactic names, cover images, and player positions
 
 function App() {
+  const[erase, Seterase] = useState(false);
+  const [customCSS, setCSS] = useState("#717485");
+
+  // Array of tactic objects with tactic names, cover images, and player positions
+  function Erase(){
+    Seterase(!erase);
+    if(erase){
+      setCSS({
+        bgColor: "#ffffff",
+        txtColor: "black" 
+      });
+    }
+
+    else
+    {
+      setCSS({
+        bgColor: "#333647",
+        txtColor: "hsl(231, 11%, 65%)" 
+      });
+    }
+  }
   //State for checking did tactic change
 
   //dropdown menu arrow for animation
@@ -187,7 +207,7 @@ function App() {
               name="Kalem"
               customStyle={{ width: 163, height: 48 }}
             /> */}
-            <NavigationButtons
+            {/* <NavigationButtons
               vHover={setHover}
               canDisplayHoverMenu={true}
               menuItems={
@@ -243,7 +263,7 @@ function App() {
               }
               name="Şekiller"
               customStyle={{ width: 170, height: 48 }}
-            />
+            /> */}
             <NavigationButtons
               canDisplayHoverMenu={false}
               name="Görseli İndir"
@@ -295,6 +315,11 @@ function App() {
                 </animated.div>
               }
             </div>
+            {/* <button className="Erase"
+             onClick={()=>{Erase();}}
+             style={{backgroundColor: customCSS.bgColor, color: customCSS.txtColor}}>
+              Erase Shapes
+             </button> */}
 
             <header className="App-header" id="field" ref={fieldRef}>
               <div
