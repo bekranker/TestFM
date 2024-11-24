@@ -314,17 +314,14 @@ function App() {
                 )}
               </div>
               {Object.keys(selectedTaktik).length > 0 &&
-                selectedTaktik.poses.map((item, index) => {
-                  return (
-                    <SoccerPlayer
-                      id={"player-" + index}
-                      instantFeatures={item.role}
-                      onDragHandlerEvent={setCorrectData}
-                      pos={{ x: item.pos.x, y: item.pos.y }}
-                      recordThat={selectedTaktik}
-                    />
-                  );
-                })}
+                selectedTaktik.poses.map(element => {
+                  return <SoccerPlayer
+                  instantFeatures={element.role}
+                  onDragHandlerEvent={setCorrectData}
+                  pos={{ x: element.pos.x, y: element.pos.y }}
+                  recordThat={selectedTaktik}
+                />
+                })};
             </header>
           </animated.div>
         </div>
